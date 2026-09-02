@@ -1,0 +1,1468 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap");
+
+:root {
+  --prescot-font-body: "Manrope", Arial, sans-serif;
+  --prescot-font-heading: "Outfit", Arial, sans-serif;
+}
+
+html body,
+html body button,
+html body input,
+html body select,
+html body textarea,
+html body .elementor-button,
+html body .elementor-widget-text-editor,
+html body .elementor-icon-box-description,
+html body .distText,
+html body .distBtn {
+  font-family: var(--prescot-font-body) !important;
+}
+
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .elementor-heading-title,
+html body .distTitle,
+html body .distKicker {
+  font-family: var(--prescot-font-heading) !important;
+}
+
+/* =========================================================
+   PRESCOT LUXURY WHITE DOCK MENU (EXACT MATCH SS2)
+   ========================================================= */
+
+.icon-menu {
+  display: none !important;
+}
+
+.prescot-dock,
+.prescot-dock .dock-lang-item,
+.gtranslate_wrapper,
+[id^="gt-wrapper-"],
+#gt_float_wrapper,
+.gt_switcher {
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+
+.prescot-dock {
+  position: fixed !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 999999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: clamp(10px, 1.8vw, 22px) !important;
+  background: #ffffff !important;
+  border-radius: 18px !important;
+  padding: 6px 18px !important;
+  height: 52px !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-sizing: border-box !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+}
+
+.prescot-dock.dock-hidden {
+  transform: translateX(-50%) translateY(120px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.prescot-dock .dock-item {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  color: #1e293b !important;
+  text-decoration: none !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
+}
+
+.prescot-dock .dock-item svg {
+  width: 21px !important;
+  height: 21px !important;
+  transition: transform 0.2s ease, color 0.2s ease, fill 0.2s ease !important;
+}
+
+.prescot-dock .dock-item .dock-logo-icon {
+  width: 26px !important;
+  height: 18px !important;
+}
+
+.prescot-dock .dock-item:hover,
+.prescot-dock .dock-item.active,
+.prescot-dock .dock-item.url-active {
+  color: #e14e26 !important;
+}
+
+.prescot-dock .dock-item:hover svg,
+.prescot-dock .dock-item.active svg,
+.prescot-dock .dock-item.url-active svg {
+  transform: translateY(-2px) !important;
+  color: #e14e26 !important;
+  fill: #e14e26 !important;
+}
+
+/* Tooltip on hover */
+.prescot-dock .dock-item::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #0f172a;
+  color: #ffffff;
+  font-family: var(--prescot-font-body, -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prescot-dock .dock-item:hover::after {
+  opacity: 1 !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+.prescot-dock .dock-label {
+  display: none !important;
+}
+
+/* =========================================================
+   DOCK MEDIA QUERIES
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .prescot-dock {
+    bottom: 14px !important;
+    padding: 6px 12px !important;
+    gap: 8px !important;
+    height: 48px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+  .prescot-dock .dock-item {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  .prescot-dock .dock-item svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .prescot-dock .dock-item::after {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   DOCK LAYOUT OVERRIDES
+   ========================================================= */
+
+.b2b-choice-card:hover .b2b-choice-action {
+  transform: translateX(4px);
+}
+
+
+.gtranslate_wrapper .gt_options,
+.gtranslate_wrapper .gt_languages,
+.gtranslate_wrapper .gt-lang-list,
+.gtranslate_wrapper .gt_dropdown,
+[id^="gt-wrapper-"] .gt_options,
+[id^="gt-wrapper-"] .gt_languages,
+[id^="gt-wrapper-"] .gt-lang-list,
+[id^="gt-wrapper-"] .gt_dropdown,
+.gt_float_switcher .gt_options {
+  position: absolute !important;
+  top: auto !important;
+  bottom: calc(100% + 12px) !important;
+  right: 0 !important;
+  left: auto !important;
+  z-index: 99999999 !important;
+  min-width: 170px !important;
+  max-width: 240px !important;
+  width: max-content !important;
+  max-height: 60vh !important;
+  overflow-y: auto !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Elementor containers respect their native overflow */
+
+.gt_float_switcher-arrow {
+  display: none !important;
+}
+
+#gt_float_wrapper {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  display: block !important;
+}
+
+#gt_float_wrapper .gt-selected .gt-current-lang {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+#gt_float_wrapper .gt-selected,
+#gt_float_wrapper .gt-selected .gt-current-lang {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* =========================================================
+   STANDARD CTA & SLIDER BUTTON FIXES (PURE PILL DESIGN)
+   ========================================================= */
+
+.as-changing-widget .elementor-widget-button,
+.as-changing-widget .elementor-widget-button .elementor-widget-container,
+.as-changing-widget .elementor-widget-button .elementor-button-wrapper,
+.as-slider .elementor-widget-button,
+.as-slider .elementor-widget-button .elementor-widget-container,
+.as-slider .elementor-widget-button .elementor-button-wrapper,
+.elementor-widget-button,
+.elementor-widget-button .elementor-widget-container,
+.elementor-widget-button .elementor-button-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  filter: none !important;
+}
+
+.as-changing-widget .elementor-widget-button .elementor-button,
+.as-changing-widget .elementor-button,
+.as-slider .elementor-button,
+.elementor-widget-button .elementor-button,
+a.elementor-button,
+.prescot-standard-cta.elementor-button {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  background-color: #e55933 !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 9999px !important;
+  padding: 14px 32px !important;
+  font-family: var(--prescot-font-body, 'Inter', sans-serif) !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+}
+
+.as-changing-widget .elementor-widget-button .elementor-button:hover,
+.as-changing-widget .elementor-widget-button .elementor-button:focus,
+.as-changing-widget .elementor-button:hover,
+.as-changing-widget .elementor-button:focus,
+.as-slider .elementor-button:hover,
+.as-slider .elementor-button:focus,
+.elementor-widget-button .elementor-button:hover,
+.elementor-widget-button .elementor-button:focus,
+a.elementor-button:hover,
+a.elementor-button:focus,
+.prescot-standard-cta.elementor-button:hover,
+.prescot-standard-cta.elementor-button:focus {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  background-color: #0f172a !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+html:has(body.page-id-17073),
+html body.page-id-17073 {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* =========================================================
+   MODERN B2B MODAL DIALOG (PURE HIGH-CONTRAST WHITE LUXURY)
+   ========================================================= */
+
+dialog#b2b-modal,
+dialog#b2b-register-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  margin: auto !important;
+  padding: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 24px !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  max-width: min(92vw, 720px) !important;
+  width: 100% !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
+  opacity: 0;
+  transform: scale(0.95) translateY(12px);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+  overflow: hidden !important;
+  z-index: 9999999 !important;
+}
+
+dialog#b2b-modal[open],
+dialog#b2b-register-modal[open] {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+}
+
+@starting-style {
+  dialog#b2b-modal[open],
+  dialog#b2b-register-modal[open] {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+}
+
+dialog#b2b-modal::backdrop,
+dialog#b2b-register-modal::backdrop {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(8px) !important;
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+dialog#b2b-modal[open]::backdrop,
+dialog#b2b-register-modal[open]::backdrop {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+@starting-style {
+  dialog#b2b-modal[open]::backdrop,
+  dialog#b2b-register-modal[open]::backdrop {
+    background-color: rgba(15, 23, 42, 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+.b2b-modal-wrapper {
+  position: relative !important;
+  padding: clamp(28px, 4.5vw, 40px) !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
+  box-sizing: border-box !important;
+}
+
+.b2b-modal-close {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 36px !important;
+  height: 36px !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  border-radius: 50% !important;
+  border: 1px solid #cbd5e1 !important;
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  font-size: 20px !important;
+  display: grid !important;
+  place-items: center !important;
+  cursor: pointer !important;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.b2b-modal-close:hover {
+  background: #e14e26 !important;
+  border-color: #e14e26 !important;
+  color: #ffffff !important;
+  transform: none !important;
+}
+
+.b2b-modal-header {
+  text-align: center !important;
+  max-width: 560px !important;
+  margin: 0 auto clamp(20px, 3.5vw, 32px) !important;
+}
+
+.b2b-modal-kicker {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: #e14e26 !important;
+  background: #fff0eb !important;
+  border: 1px solid rgba(225, 78, 38, 0.3) !important;
+  padding: 4px 14px !important;
+  border-radius: 999px !important;
+  margin-bottom: 14px !important;
+}
+
+.b2b-modal-title {
+  margin: 0 0 10px !important;
+  font-family: var(--prescot-font-heading, sans-serif) !important;
+  font-size: clamp(24px, 3.5vw, 34px) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  color: #090d12 !important;
+}
+
+.b2b-modal-desc {
+  margin: 0 !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: clamp(14px, 1.3vw, 15px) !important;
+  line-height: 1.6 !important;
+  color: #475569 !important;
+}
+
+.b2b-modal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.b2b-choice-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 24px !important;
+  border-radius: 18px !important;
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1 !important;
+  text-decoration: none !important;
+  color: #0f172a !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.b2b-choice-card:hover {
+  background: #ffffff !important;
+  border-color: #e14e26 !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 30px rgba(225, 78, 38, 0.15) !important;
+}
+
+.b2b-choice-card--primary {
+  background: #fff7f5 !important;
+  border-color: rgba(225, 78, 38, 0.35) !important;
+}
+
+.b2b-choice-card--primary:hover {
+  background: #ffffff !important;
+  border-color: #e14e26 !important;
+}
+
+.b2b-choice-badge {
+  display: inline-block !important;
+  align-self: flex-start !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  background: #e2e8f0 !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #334155 !important;
+  margin-bottom: 14px !important;
+}
+
+.b2b-choice-card--primary .b2b-choice-badge {
+  background: #e14e26 !important;
+  color: #ffffff !important;
+}
+
+.b2b-choice-card h3 {
+  margin: 0 0 8px !important;
+  font-family: var(--prescot-font-heading, sans-serif) !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  color: #090d12 !important;
+}
+
+.b2b-choice-card p {
+  margin: 0 0 20px !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  color: #334155 !important;
+}
+
+.b2b-choice-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  padding: 12px 20px !important;
+  border-radius: 30px !important;
+  background: #e14e26 !important;
+  color: #ffffff !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 13px !important;
+  font-weight: 750 !important;
+  transition: all 0.2s ease !important;
+}
+
+.b2b-choice-action span {
+  color: #ffffff !important;
+}
+
+.b2b-choice-action svg {
+  stroke: #ffffff !important;
+}
+
+.b2b-choice-card:hover .b2b-choice-action {
+  background: #c83d17 !important;
+  transform: translateX(4px) !important;
+}
+
+
+/* Shrink the GTranslate widget slightly so it doesn't touch the dock borders */
+.dock-lang-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .2s ease;
+  outline: none !important;
+}
+
+.gtranslate_wrapper {
+  transform: scale(0.8);
+  transform-origin: center center;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+/* =========================================================
+   B2B REGISTRATION FORM (LUXURY STYLING)
+   ========================================================= */
+
+.contact-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  text-align: left !important;
+}
+
+.contact-form .form-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 16px !important;
+}
+
+@media (max-width: 600px) {
+  .contact-form .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.contact-form .field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.contact-form .field span {
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #475569 !important;
+  text-transform: uppercase !important;
+  margin-left: 4px !important;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+  width: 100% !important;
+  padding: 0 16px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 15px !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease !important;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select {
+  height: 52px !important;
+}
+
+.contact-form textarea {
+  padding: 16px !important;
+  resize: vertical !important;
+  min-height: 80px !important;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  background: #ffffff !important;
+  border-color: #e14e26 !important;
+  box-shadow: 0 0 0 4px rgba(225, 78, 38, 0.15) !important;
+}
+
+.contact-form .consent {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  margin-top: 4px !important;
+  cursor: pointer !important;
+}
+
+.contact-form .consent input[type="checkbox"] {
+  margin-top: 4px !important;
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: #e14e26 !important;
+  cursor: pointer !important;
+}
+
+.contact-form .consent span {
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  color: #64748b !important;
+}
+
+.contact-form .form-submit-row {
+  margin-top: 10px !important;
+}
+
+.contact-form .submit-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  width: 100% !important;
+  height: 56px !important;
+  background: #e14e26 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-family: var(--prescot-font-body, sans-serif) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(225, 78, 38, 0.3) !important;
+}
+
+.contact-form .submit-button:hover {
+  background: #c83d17 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(225, 78, 38, 0.4) !important;
+}
+
+/* =========================================================
+   GTRANSLATE ROUNDED / PILL SHAPE FIX
+   ========================================================= */
+
+#gt_float_wrapper .gt_float_switcher {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#gt_float_wrapper .gt-selected {
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease !important;
+  padding: 4px 8px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+#gt_float_wrapper .gt-selected:hover {
+  background: #f8fafc !important;
+}
+
+#gt_float_wrapper .gt-selected img {
+  border-radius: 50% !important; /* Optionally round the flag itself */
+  object-fit: cover !important;
+}
+
+
+/* =========================================================
+   PRESCOT SMART TOP LOGO (Hides on Scroll Down, Shows on Scroll Up)
+   ========================================================= */
+.prescot-smart-logo {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  padding: 24px 20px 16px 20px !important;
+  text-align: center !important;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+}
+
+.prescot-smart-logo a {
+  display: inline-block !important;
+  pointer-events: auto !important;
+}
+
+.prescot-smart-logo img {
+  height: 48px !important;
+  width: auto !important;
+  display: block !important;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.prescot-smart-logo img:hover {
+  transform: scale(1.03) !important;
+}
+
+.prescot-smart-logo.logo-hidden {
+  transform: translateY(-120%) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   PRESCOT GLOBAL BUTTON ARCHITECTURE (EXACT ODKRYJ & WYŚLIJ)
+   ========================================================= */
+
+/* Base Pill Button */
+.p-btn,
+.elementor-button,
+.submitBtn,
+.b2b-btn,
+.distBtn {
+  font-family: var(--prescot-font-body, 'Manrope', sans-serif) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 1. BUTTONS ON HERO / DARK SECTIONS ("Odkryj" style) */
+.p-btn-primary,
+.p-btn-hero-primary,
+.catalog-button,
+.hero-btn-primary {
+  background: #e55933 !important;
+  color: #ffffff !important;
+  border: 1px solid #e55933 !important;
+  padding: 15px 34px !important;
+  box-shadow: 0 4px 14px rgba(229, 89, 51, 0.35) !important;
+}
+
+.p-btn-primary:hover,
+.p-btn-hero-primary:hover,
+.catalog-button:hover,
+.hero-btn-primary:hover {
+  transform: translateY(-2px) !important;
+  background: #ffffff !important;
+  color: #e55933 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(229, 89, 51, 0.45) !important;
+}
+
+.p-btn-outline,
+.p-btn-hero-outline,
+.hero-btn-outline {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  padding: 15px 34px !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.p-btn-outline:hover,
+.p-btn-hero-outline:hover,
+.hero-btn-outline:hover {
+  transform: translateY(-2px) !important;
+  background: #ffffff !important;
+  color: #212a35 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 2. BUTTONS ON WHITE / LIGHT SECTIONS ("Wyślij" / B2B style) */
+.p-btn-dark,
+.p-btn-white-surface,
+.submitBtn,
+.b2b-submit-btn,
+.contact-submit-btn {
+  background: #212a35 !important;
+  color: #ffffff !important;
+  border: 1px solid #212a35 !important;
+  padding: 16px 32px !important;
+  box-shadow: 0 2px 8px rgba(33, 42, 53, 0.1) !important;
+}
+
+.p-btn-dark:hover,
+.p-btn-white-surface:hover,
+.submitBtn:hover,
+.b2b-submit-btn:hover,
+.contact-submit-btn:hover {
+  transform: translateY(-2px) !important;
+  background: #ffffff !important;
+  color: #212a35 !important;
+  border-color: #212a35 !important;
+  box-shadow: 0 6px 20px rgba(33, 42, 53, 0.18) !important;
+}
+
+.p-btn-orange-on-white,
+.b2b-action-btn-orange {
+  background: #e55933 !important;
+  color: #ffffff !important;
+  border: 1px solid #e55933 !important;
+  padding: 16px 32px !important;
+  box-shadow: 0 4px 14px rgba(229, 89, 51, 0.25) !important;
+}
+
+.p-btn-orange-on-white:hover,
+.b2b-action-btn-orange:hover {
+  transform: translateY(-2px) !important;
+  background: #ffffff !important;
+  color: #e55933 !important;
+  border-color: #e55933 !important;
+  box-shadow: 0 6px 20px rgba(229, 89, 51, 0.35) !important;
+}
+
+
+/* =========================================================
+   GLOBALNA STRZAŁKA W DÓŁ (BOUNCING ARROW) - ZAWSZE CZYSTO NAD MENU
+   ========================================================= */
+.p-hero-arrow-down {
+  position: absolute !important;
+  bottom: 96px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 99 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  opacity: 0.9 !important;
+  transition: all 0.25s ease !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.6px !important;
+  text-transform: uppercase !important;
+}
+.p-hero-arrow-down:hover {
+  opacity: 1 !important;
+  color: #ff8a65 !important;
+  transform: translateX(-50%) translateY(2px) !important;
+}
+.p-arrow-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  backdrop-filter: blur(8px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  animation: pBounce 2.2s infinite ease-in-out !important;
+}
+@keyframes pBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .p-hero-arrow-down {
+    bottom: 84px !important;
+  }
+}
+
+
+/* =========================================================
+   BLACK 3D PORTFOLIO & PRODUCT PAGES (EXACT DARK AESTHETIC)
+   ========================================================= */
+
+html:has(.mdw-card-portfolio),
+body:has(.mdw-card-portfolio),
+html:has(.mdw-gradient),
+body:has(.mdw-gradient),
+body.page-id-17803,
+body.page-id-19751,
+body.page-id-22365,
+body.page-id-22366,
+body.page-id-19747,
+body.page-id-19749,
+body.page-id-19753,
+body.page-id-19755,
+body.page-id-19757,
+body.page-id-19759,
+body.page-id-19761,
+body.page-id-19763,
+body.page-id-19765,
+body.page-id-19767,
+body.page-id-19769,
+body.page-id-19771,
+body.page-id-19773,
+body.page-id-19775,
+body.page-id-19777,
+body.page-id-19779,
+body.page-id-19781,
+body.page-id-19783,
+body.page-id-19785 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body:has(.mdw-card-portfolio) #page,
+body:has(.mdw-card-portfolio) #content,
+body:has(.mdw-card-portfolio) .site-content,
+body:has(.mdw-card-portfolio) .ast-container,
+body:has(.mdw-card-portfolio) .elementor,
+body:has(.mdw-card-portfolio) .e-parent,
+body:has(.mdw-card-portfolio) .mdw-card-portfolio,
+body:has(.mdw-gradient) #page,
+body:has(.mdw-gradient) #content,
+body:has(.mdw-gradient) .site-content,
+body:has(.mdw-gradient) .ast-container,
+body:has(.mdw-gradient) .elementor,
+body:has(.mdw-gradient) .e-parent,
+body:has(.mdw-gradient) .mdw-card-portfolio,
+.page-id-17803 #page,
+.page-id-17803 #content,
+.page-id-17803 .site-content,
+.page-id-17803 .ast-container,
+.page-id-17803 .elementor,
+.page-id-17803 .e-parent,
+.page-id-17803 .mdw-card-portfolio,
+.page-id-22365 #page,
+.page-id-22365 #content,
+.page-id-22365 .site-content,
+.page-id-22365 .ast-container,
+.page-id-22365 .elementor,
+.page-id-22365 .e-parent,
+.page-id-22365 .mdw-card-portfolio,
+.page-id-22366 #page,
+.page-id-22366 #content,
+.page-id-22366 .site-content,
+.page-id-22366 .ast-container,
+.page-id-22366 .elementor,
+.page-id-22366 .e-parent,
+.page-id-22366 .mdw-card-portfolio {
+  background-color: #000000 !important;
+}
+
+.mdw-card-portfolio {
+  background-color: #000000 !important;
+}
+
+/* Subpage card scroll arrows */
+.mdw-card-portfolio .elementor-widget-icon,
+.mdw-card-portfolio .elementor-icon,
+.mdw-card-portfolio .elementor-icon svg,
+.e-parent .elementor-icon[href^="#"] {
+  display: inline-flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#stopka.white-footer, footer.white-footer {
+  background-color: #ffffff !important;
+}
+
+/* =========================================================
+   GLOBALNA STRZAŁKA W DÓŁ (BOUNCING ARROW) - CZYSTY BIAŁY GLASS NAD MENU
+   ========================================================= */
+.p-hero-arrow-down {
+  position: absolute !important;
+  bottom: 96px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 99 !important;
+  color: #ffffff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  opacity: 0.95 !important;
+  transition: all 0.25s ease !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.6px !important;
+  text-transform: uppercase !important;
+}
+.p-hero-arrow-down span {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6) !important;
+}
+.p-hero-arrow-down:hover {
+  opacity: 1 !important;
+  color: #ff8a65 !important;
+  transform: translateX(-50%) translateY(2px) !important;
+}
+.p-hero-arrow-down:hover span {
+  color: #ff8a65 !important;
+}
+.p-arrow-icon {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  animation: pBounce 2.2s infinite ease-in-out !important;
+  color: #ffffff !important;
+}
+.p-arrow-icon svg {
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+}
+@keyframes pBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+@media (max-width: 767px) {
+  .p-hero-arrow-down {
+    bottom: 84px !important;
+  }
+}
+
+
+/* =========================================================
+   NATIVE B2C REDIRECT POPUP DIALOG (MODERN WEB GUIDANCE)
+   ========================================================= */
+.prescot-b2c-dialog {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  max-width: 480px !important;
+  width: 90% !important;
+  margin: auto !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.45) !important;
+  outline: none !important;
+  overflow: visible !important;
+}
+
+.prescot-b2c-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.78) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.b2c-dialog-box {
+  background: #ffffff !important;
+  border-radius: 24px !important;
+  padding: 38px 32px 30px 32px !important;
+  text-align: center !important;
+  position: relative !important;
+  border: 1px solid #e2e8f0 !important;
+  box-sizing: border-box !important;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.b2c-dialog-icon {
+  width: 68px !important;
+  height: 68px !important;
+  border-radius: 20px !important;
+  background: rgba(229, 89, 51, 0.1) !important;
+  color: #e55933 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 16px auto !important;
+}
+
+.b2c-dialog-badge {
+  display: inline-block !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #e55933 !important;
+  background: rgba(229, 89, 51, 0.08) !important;
+  padding: 4px 14px !important;
+  border-radius: 999px !important;
+  margin-bottom: 12px !important;
+}
+
+.b2c-dialog-box h3 {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin-bottom: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.b2c-dialog-box p {
+  font-size: 14.5px !important;
+  color: #475569 !important;
+  line-height: 1.6 !important;
+  margin-bottom: 26px !important;
+}
+
+.b2c-dialog-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.b2c-btn-confirm {
+  background: #e55933 !important;
+  color: #ffffff !important;
+  padding: 14px 20px !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  font-size: 14.5px !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(229, 89, 51, 0.35) !important;
+}
+
+.b2c-btn-confirm:hover {
+  background: #c94622 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(229, 89, 51, 0.45) !important;
+}
+
+.b2c-btn-cancel {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.b2c-btn-cancel:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.b2c-dialog-close {
+  position: absolute !important;
+  top: 16px !important;
+  right: 18px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+}
+
+.b2c-dialog-close:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+
+/* =========================================================
+   GLOBAL SCROLL TO TOP BUTTON (FLOATING ON RIGHT ABOVE MENU)
+   ========================================================= */
+.prescot-scroll-to-top {
+  position: fixed !important;
+  bottom: 96px !important;
+  right: 28px !important;
+  z-index: 998 !important;
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 50% !important;
+  background: rgba(15, 23, 42, 0.78) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(14px) scale(0.92) !important;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  outline: none !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+}
+
+.prescot-scroll-to-top.stt-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.prescot-scroll-to-top:hover {
+  background: #e55933 !important;
+  border-color: #e55933 !important;
+  color: #ffffff !important;
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 12px 28px rgba(229, 89, 51, 0.45) !important;
+}
+
+.prescot-scroll-to-top svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5 !important;
+  transition: transform 0.2s ease !important;
+}
+
+.prescot-scroll-to-top:hover svg {
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 768px) {
+  .prescot-scroll-to-top {
+    bottom: 86px !important;
+    right: 18px !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+
+/* =========================================================
+   ULTRA-CLEAN 2026 LUXURY B2C REDIRECT MODAL (NO AI SLOP)
+   ========================================================= */
+.prescot-b2c-dialog {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  max-width: 420px !important;
+  width: calc(100% - 32px) !important;
+  margin: auto !important;
+  outline: none !important;
+  overflow: visible !important;
+}
+
+.prescot-b2c-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.b2c-dialog-box {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 36px 30px 28px 30px !important;
+  text-align: center !important;
+  position: relative !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 24px 60px -10px rgba(15, 23, 42, 0.35) !important;
+  box-sizing: border-box !important;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.b2c-dialog-box .b2c-top-label {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.2px !important;
+  color: #e55933 !important;
+  margin-bottom: 10px !important;
+}
+
+.b2c-dialog-box h3 {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+}
+
+.b2c-dialog-box p.b2c-main-desc {
+  font-size: 14px !important;
+  color: #475569 !important;
+  line-height: 1.55 !important;
+  margin-bottom: 26px !important;
+}
+
+.b2c-dialog-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.b2c-btn-confirm {
+  background: #e55933 !important;
+  color: #ffffff !important;
+  padding: 13px 20px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: background-color 0.2s ease, transform 0.15s ease !important;
+  box-shadow: 0 4px 12px rgba(229, 89, 51, 0.25) !important;
+}
+
+.b2c-btn-confirm:hover {
+  background: #c94622 !important;
+  transform: translateY(-1px) !important;
+}
+
+.b2c-btn-cancel {
+  background: transparent !important;
+  color: #64748b !important;
+  border: none !important;
+  padding: 10px 16px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: color 0.2s ease !important;
+}
+
+.b2c-btn-cancel:hover {
+  color: #0f172a !important;
+}
+
+.b2c-dialog-close {
+  position: absolute !important;
+  top: 14px !important;
+  right: 16px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+}
+
+.b2c-dialog-close:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+
+/* =========================================================
+   ABSOLUTE SUPPRESSION OF OLD SCROLL-TOP & FOOTER ARROWS
+   ========================================================= */
+#ast-scroll-top,
+.ast-scroll-top,
+.ast-scroll-to-top-right,
+.ast-scroll-to-top-left,
+.stopkaArrowUp,
+a.stopkaArrowUp,
+.footerSlide .stopkaArrowUp,
+.scroll-to-top,
+.back-to-top,
+a[href="#page"][id*="scroll"],
+a[href="#masthead"],
+.elementor-element-89ac1c6,
+.elementor-element-2635332e,
+.elementor-element-44cdc488 {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Ensure headings and hero text are always visible even if waypoints lag */
+.elementor-invisible:not(.as-changing-widget .elementor-widget) {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Bulletproof slider text isolation: only the active slide widget is visible */
+.as-changing-widget .elementor-widget:not(.currentUp):not(.currentDown) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.as-changing-widget .elementor-widget.currentUp,
+.as-changing-widget .elementor-widget.currentDown {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+

@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Baza Wiedzy i FAQ techniczne Prescot LED — kompendium dla instalatorów, projektantów i dystrybutorów oświetlenia.">
+  <title>Baza Wiedzy & FAQ — Prescot LED</title>
+  <link rel="icon" href="/wp-content/uploads/2025/09/cropped-favicon-1-32x32.png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/baza-wiedzy.css?v=20260901-responsive-cards">
+  <link rel="stylesheet" href="/prescot-global.css?v=20260901-white-dock">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <div class="page-glow page-glow-one" aria-hidden="true"></div>
+  <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+  <main id="main">
+    <!-- HERO SECTION -->
+    <section class="hero" aria-labelledby="bw-title">
+      <div class="hero-photo" aria-hidden="true">
+        <img src="/wp-content/uploads/2026/01/FirmaPRESCOTLED.webp" alt="Prescot LED Centrala">
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+
+      <div class="hero-content reveal">
+        <p class="eyebrow"><span></span> Baza Wiedzy & FAQ / Prescot LED</p>
+        <h1 id="bw-title">Wszystko o<br><em>technologii LED.</em></h1>
+        <p class="hero-lead">Oficjalne kompendium inżynieryjne dla instalatorów, projektantów i dystrybutorów. Fizyka taśm LED, dobór zasilaczy, spadki napięć i automatyka sterowania.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#kalkulator">
+            Kalkulator zasilania
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+          <a class="button button-ghost" href="#faq">Przeglądaj zagadnienia</a>
+        </div>
+      </div>
+
+      <div class="hero-caption reveal">
+        <span class="hero-caption-index">01</span>
+        <span class="hero-caption-line"></span>
+        <span>Standardy techniczne<br>i wsparcie projektowe</span>
+      </div>
+    </section>
+
+    <!-- KNOWLEDGE SECTION -->
+    <section class="knowledge-section" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow eyebrow-dark"><span></span> Baza pytań i odpowiedzi</p>
+        <h2 id="faq-title">Wybierz zagadnienie<br>lub <em>wyszukaj temat.</em></h2>
+        <p>Szczegółowe odpowiedzi inżynierów Prescot na pytania o parametry taśm COB/SMD, eliminację spadków napięcia, dobór zasilaczy, protokoły cyfrowe oraz odprowadzanie ciepła.</p>
+      </div>
+
+      <!-- SEARCH BOX -->
+      <div class="bw-search-box reveal">
+        <div class="bw-search-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="bw-search-input" placeholder="Wpisz szukaną frazę (np. 48V, spadek napięcia, Tuya, PWM, COB, gwarancja)..." autocomplete="off">
+          <span class="bw-search-tag" id="bw-search-count">14 pytań</span>
+        </div>
+      </div>
+
+      <!-- CATEGORY CARDS GRID -->
+      <div class="category-grid reveal" id="category-pills">
+        <button type="button" class="cat-card active" data-cat="all">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          </div>
+          <span class="cat-title">Wszystkie</span>
+          <span class="cat-count">14 pytań</span>
+        </button>
+
+        <button type="button" class="cat-card" data-cat="tasmy">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v6M12 15v6"/></svg>
+          </div>
+          <span class="cat-title">Taśmy LED</span>
+          <span class="cat-count">5 pytań</span>
+        </button>
+
+        <button type="button" class="cat-card" data-cat="zasilacze">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <span class="cat-title">Zasilacze</span>
+          <span class="cat-count">3 pytania</span>
+        </button>
+
+        <button type="button" class="cat-card" data-cat="sterowniki">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+          </div>
+          <span class="cat-title">Sterowniki</span>
+          <span class="cat-count">2 pytania</span>
+        </button>
+
+        <button type="button" class="cat-card" data-cat="profile">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <span class="cat-title">Profile</span>
+          <span class="cat-count">2 pytania</span>
+        </button>
+
+        <button type="button" class="cat-card" data-cat="b2b">
+          <div class="cat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+          </div>
+          <span class="cat-title">Współpraca B2B</span>
+          <span class="cat-count">2 pytania</span>
+        </button>
+      </div>
+
+      <!-- FAQ GRID -->
+      <div class="faq-grid" id="faq-grid">
+
+        <!-- KATEGORIA: TAŚMY LED -->
+        <details class="faq-card reveal" data-category="tasmy">
+          <summary>
+            <span>Napięcie 12V, 24V czy 48V — jak dobrać właściwe napięcie taśmy LED?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Taśmy LED</span>
+            <p><strong>Napięcie 24V</strong> to aktualny standard profesjonalny w ofercie Prescot LED. Zapewnia 2-krotnie mniejszy prąd roboczy niż 12V przy tej samej mocy, co pozwala na bezpieczne zasilanie odcinków do 5–10 metrów bez widocznego spadku jasności.</p>
+            <p><strong>Napięcie 48V</strong> stosuje się na trasach długich (nawet do 20-30 metrów z jednostronnym zasilaniem), redukując straty ciepła na przewodach miedzianych.</p>
+            <p><strong>Napięcie 12V</strong> rekomendowane jest wyłącznie do instalacji w pojazdach, jachtach lub na ultrakrótkich odcinkach meblowych (poniżej 2 m).</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="tasmy">
+          <summary>
+            <span>COB vs SMD — Czym różnią się taśmy COB (Chip on Board) od klasycznych SMD?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Taśmy LED</span>
+            <p>Taśmy <strong>COB (Chip on Board)</strong> posiadają diody zalane ciągłą warstwą luminoforu (np. 480–528 chipów/m). Daje to idealnie jednolitą, gładką linię światła bez pojedynczych punktów (kropek), nawet w płytkich profilach aluminiowych z mlecznym kloszem.</p>
+            <p>Taśmy <strong>SMD (np. SMD 2835)</strong> to klasyczne pojedyncze diody w obudowach. Przy gęstości 120-240 LED/m oferują najwyższą sprawność świetlną (do 140-160 lm/W) i doskonałe parametry CRI.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="tasmy">
+          <summary>
+            <span>Co oznacza wskaźnik CRI (Ra) i dlaczego Prescot gwarantuje CRI &gt; 90+?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Taśmy LED</span>
+            <p><strong>CRI (Color Rendering Index)</strong> określa stopień wierności oddawania barw w porównaniu ze światłem słonecznym. Tanie diody na rynku mają CRI &lt; 70-80, przez co barwy ludzkiej skóry, drewna, mebli i żywności wyglądają na szare lub sine.</p>
+            <p>Wszystkie taśmy z serii <strong>Prescot TrueColor</strong> posiadają CRI &ge; 90+ (ze wskaźnikiem R9 &gt; 80 dla głębokiej czerwieni), co jest kluczowe w architekturze wnętrz, salonach i strefach komercyjnych.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="tasmy">
+          <summary>
+            <span>Co oznacza grubość podłoża 3oz miedzi na taśmach Prescot?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Taśmy LED</span>
+            <p>Oznaczenie <strong>3oz (ok. 105 &mu;m grubości miedzi)</strong> w podłożu PCB oznacza potrójną warstwę przewodzącą w porównaniu ze standardowymi taśmami marketowymi (często tylko 1oz). Gruba miedź zapobiega przegrzewaniu się ścieżek, obniża spadek napięcia i gwarantuje stabilną pracę przez ponad 50 000 godzin.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="tasmy">
+          <summary>
+            <span>Jaka jest maksymalna długość jednego odcinka taśmy LED bez spadku jasności?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Taśmy LED</span>
+            <p>Dla taśm <strong>24V</strong> maksymalny odcinek zasilany jednostronnie wynosi <strong>5 metrów</strong>. Przy zasileniu obustronnym (początek i koniec pętli) odcinek można wydłużyć do <strong>10 metrów</strong>.</p>
+            <p>Przy długościach powyżej 10 metrów zaleca się poprowadzenie magistrali zasilającej równolegle w profilu i dowiązanie napięcia co 5 m.</p>
+          </div>
+        </details>
+
+        <!-- KATEGORIA: ZASILACZE -->
+        <details class="faq-card reveal" data-category="zasilacze">
+          <summary>
+            <span>Jak obliczyć minimalną moc zasilacza LED i dlaczego zapas 20% jest konieczny?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Zasilacze & Prądy</span>
+            <p>Wzór na dobór zasilacza: <strong>P_zas = Długość_taśmy (m) &times; Moc_nominalna (W/m) &times; 1,20</strong>.</p>
+            <p>Zapas 20% chroni zasilacz impulsowy przed pracą na skraju wydajności termicznej, redukuje nagrzewanie kondensatorów elektrolitycznych i eliminuje ryzyko wyłączenia przez zabezpieczenie przeciążeniowe (OPP).</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="zasilacze">
+          <summary>
+            <span>Zasilacz Ultra-Slim a Zasilacz Montażowy IP67 — kiedy który wybrać?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Zasilacze & Prądy</span>
+            <p><strong>Zasilacze Ultra-Slim (np. seria Prescot SLIM)</strong> o grubości zaledwie 16–21 mm przeznaczone są do montażu w zabudowach meblowych, za lustrami i w profilach oświetleniowych.</p>
+            <p><strong>Zasilacze hermetyczne IP67 (np. seria GLP / MeanWell)</strong> w obudowach aluminiowych stosuje się w łazienkach, strefach wilgotnych oraz na zewnątrz budynków.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="zasilacze">
+          <summary>
+            <span>Jaki przekrój przewodu dobrać między zasilaczem a taśmą LED?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Zasilacze & Prądy</span>
+            <p>Dla odległości do 5 m i mocy do 50W wystarczy przewód <strong>2x 0,75 mm&sup2;</strong>. Dla odległości 5–15 m lub mocy 100–150W należy zastosować <strong>2x 1,5 mm&sup2;</strong> lub <strong>2x 2,5 mm&sup2;</strong>, aby spadek napięcia na kablu nie przekroczył 3% (&lt; 0,7V przy 24V).</p>
+          </div>
+        </details>
+
+        <!-- KATEGORIA: STEROWNIKI & SMART -->
+        <details class="faq-card reveal" data-category="sterowniki">
+          <summary>
+            <span>Czym jest częstotliwość PWM 4000Hz w sterownikach Prescot i dlaczego chroni przed migotaniem?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Sterowniki & Smart</span>
+            <p>Tanie ściemniacze modulują jasność z częstotliwością 200–500Hz, co wywołuje efekt stroboskopowy widoczny w kamerach smartfonów oraz powoduje zmęczenie wzroku i bóle głowy.</p>
+            <p>Sterowniki Prescot pracują na częstotliwości <strong>PWM &ge; 4000Hz (High-Frequency Flicker-Free)</strong>, co gwarantuje płynne ściemnianie od 0,1% do 100% i brak migotania przy nagrywaniu wideo.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="sterowniki">
+          <summary>
+            <span>Jakie protokoły sterowania obsługuje ekosystem Prescot?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Sterowniki & Smart</span>
+            <p>Obsługujemy wszystkie wiodące standardy automatyki budynkowej:</p>
+            <ul>
+              <li><strong>MiBoxer RF 2.4GHz</strong> — sterowanie radiowe z pilotów i paneli naściennych bez widoczności optycznej.</li>
+              <li><strong>Zigbee 3.0 & Tuya Smart</strong> — integracja z Home Assistant, Philips Hue i aplikacjami mobilnymi.</li>
+              <li><strong>DALI-2 / DMX512</strong> — profesjonalne magistrale przewodowe dla hoteli, biurowców i obiektów komercyjnych.</li>
+              <li><strong>0/1-10V & Push-Dim</strong> — klasyczne sterowanie przyciskiem dzwonkowym.</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- KATEGORIA: PROFILE & TERMIKA -->
+        <details class="faq-card reveal" data-category="profile">
+          <summary>
+            <span>Dlaczego montaż taśmy LED w profilu aluminiowym jest obowiązkowy?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Profile & Termika</span>
+            <p>Dioda LED zamienia około 70-80% energii elektrycznej w ciepło. Przyklejenie taśmy bezpośrednio na drewno, płytę g-k lub plastik powoduje jej przegrzanie (temperatura złącza &gt; 85&deg;C), co w ciągu kilku miesięcy skutkuje degradacją luminoforu, zmianą barwy i przepaleniem.</p>
+            <p><strong>Profil aluminiowy pełni rolę radiatora</strong>, obniżając temperaturę pracy do bezpiecznych 40–50&deg;C.</p>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="profile">
+          <summary>
+            <span>Klosz mleczny (opal) czy przezroczysty (transparent) — który wybrać?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Profile & Termika</span>
+            <p><strong>Klosz mleczny (opal)</strong> pochłania ok. 25-30% światła, ale idealnie rozprasza strumień, eliminując efekt olśnienia i maskując punkty LED. Rekomendowany do oświetlenia podszafkowego, sufitowego i dekoracyjnego.</p>
+            <p><strong>Klosz transparentny</strong> przepuszcza 95% światła i stosowany jest tam, gdzie źródło światła jest ukryte (np. w sufitach podwieszanych w oprawach pośrednich).</p>
+          </div>
+        </details>
+
+        <!-- KATEGORIA: B2B & WSPÓŁPRACA -->
+        <details class="faq-card reveal" data-category="b2b">
+          <summary>
+            <span>Jakie warunki handlowe oferuje Prescot dla instalatorów i architektów?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Współpraca B2B</span>
+            <p>Partnerzy zarejestrowani w strefie B2B otrzymują:</p>
+            <ul>
+              <li>Dedykowane rabaty hurtowe i ceny projektowe od pierwszego zamówienia.</li>
+              <li>Dostęp do platformy zamówień hurtowych 24/7 ze stanami magazynowymi live.</li>
+              <li>Wsparcie inżyniera projektu i bezpłatne próbki wzorników taśm i profili.</li>
+              <li>Gwarancję fabryczną 5 lat na serie profesjonalne.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-card reveal" data-category="b2b">
+          <summary>
+            <span>Gdzie produkowane są taśmy i moduły Prescot LED?</span>
+            <svg class="faq-icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="faq-answer">
+            <span class="faq-cat-badge">Współpraca B2B</span>
+            <p>Siedziba firmy, zakład montażowy, kontrola jakości oraz magazyn centralny znajdują się w <strong>Giżycku (Warmia i Mazury, Polska)</strong> przy ul. Wileńskiej 1. Zapewniamy błyskawiczną wysyłkę w 24h na terenie całej Polski i Unii Europejskiej.</p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <section class="calc-section" id="kalkulator" aria-labelledby="calc-title">
+      <div class="calc-container">
+        <div class="calc-info reveal">
+          <p class="eyebrow"><span></span> Narzędzie inżynieryjne</p>
+          <h2 id="calc-title">Kalkulator <em>zasilania LED.</em></h2>
+          <p>Wprowadź parametry swojej trasy, aby natychmiast otrzymać rekomendowaną moc zasilacza, prąd roboczy oraz minimalny przekrój przewodu miedzianego.</p>
+        </div>
+
+        <div class="calc-box reveal">
+          <div class="calc-row">
+            <label for="calc-voltage">Napięcie taśmy LED</label>
+            <select id="calc-voltage">
+              <option value="24" selected>24V DC (Standard profesjonalny)</option>
+              <option value="12">12V DC (Niskonapięciowa)</option>
+              <option value="48">48V DC (Długie trasy)</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label for="calc-power">Moc nominalna taśmy (W/metr)</label>
+            <select id="calc-power">
+              <option value="4.8">4.8 W/m — Dekoracyjna (np. cokół, wnęka)</option>
+              <option value="9.6" selected>9.6 W/m — Standard (np. podszafkowe, łazienki)</option>
+              <option value="14.4">14.4 W/m — Mocna (np. oświetlenie główne)</option>
+              <option value="19.2">19.2 W/m — Architektoniczna duża jasność</option>
+              <option value="28.8">28.8 W/m — RGBW / CCT High Output</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label for="calc-length">Długość odcinka taśmy (metry): <strong id="calc-length-val" style="color: var(--orange-light);">5 m</strong></label>
+            <input type="range" id="calc-length" min="0.5" max="30" step="0.5" value="5" style="width:100%; accent-color: var(--orange);">
+          </div>
+
+          <div class="calc-output-card">
+            <div class="calc-output-label">Rekomendowany Zasilacz Prescot (+20% zapasu)</div>
+            <div class="calc-output-value" id="calc-result-power">60 W</div>
+            <div class="calc-output-sub" id="calc-result-details">Moc netto: 48.0W | Prąd roboczy: 2.00A | Przewód: min. 2x 0.75 mm²</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("bw-search-input");
+      const searchCount = document.getElementById("bw-search-count");
+      const cards = document.querySelectorAll(".cat-card");
+      const faqItems = document.querySelectorAll(".faq-card");
+
+      let currentCat = "all";
+      let currentQuery = "";
+
+      function filterFAQ() {
+        let visibleCount = 0;
+        faqItems.forEach((card) => {
+          const cat = card.getAttribute("data-category");
+          const text = card.textContent.toLowerCase();
+          const matchCat = (currentCat === "all" || cat === currentCat);
+          const matchQuery = (!currentQuery || text.includes(currentQuery));
+
+          if (matchCat && matchQuery) {
+            card.style.display = "block";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        if (searchCount) {
+          searchCount.textContent = visibleCount + " pytań";
+        }
+      }
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          cards.forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+          currentCat = card.getAttribute("data-cat");
+          filterFAQ();
+        });
+      });
+
+      searchInput?.addEventListener("input", (e) => {
+        currentQuery = e.target.value.toLowerCase().trim();
+        filterFAQ();
+      });
+
+      // Calculator logic
+      const voltSel = document.getElementById("calc-voltage");
+      const powerSel = document.getElementById("calc-power");
+      const lenInput = document.getElementById("calc-length");
+      const lenVal = document.getElementById("calc-length-val");
+      const resPower = document.getElementById("calc-result-power");
+      const resDetails = document.getElementById("calc-result-details");
+
+      function updateCalc() {
+        const v = parseFloat(voltSel.value);
+        const wPerM = parseFloat(powerSel.value);
+        const m = parseFloat(lenInput.value);
+
+        if (lenVal) lenVal.textContent = m + " m";
+
+        const netWatts = m * wPerM;
+        const grossWatts = netWatts * 1.2;
+        const standardPSU = [30, 45, 60, 75, 100, 150, 200, 250, 320, 350, 400, 500, 600];
+        const psu = standardPSU.find(p => p >= grossWatts) || Math.ceil(grossWatts / 50) * 50;
+        const amps = (netWatts / v).toFixed(2);
+
+        let wire = "min. 2x 0.75 mm²";
+        if (amps > 8 || m > 15) wire = "min. 2x 2.5 mm²";
+        else if (amps > 4 || m > 8) wire = "min. 2x 1.5 mm²";
+
+        if (resPower) resPower.textContent = psu + " W (" + Math.round(grossWatts) + "W)";
+        if (resDetails) resDetails.textContent = "Moc netto: " + netWatts.toFixed(1) + "W | Prąd roboczy: " + amps + "A | Przewód: " + wire;
+      }
+
+      voltSel?.addEventListener("change", updateCalc);
+      powerSel?.addEventListener("change", updateCalc);
+      lenInput?.addEventListener("input", updateCalc);
+      updateCalc();
+
+      // Scroll reveals
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
+		<footer data-elementor-type="footer" data-elementor-id="25535" class="elementor elementor-25535 elementor-location-footer" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-5a4fefb6 e-con-full e-flex e-con e-parent" data-id="5a4fefb6" data-element_type="container" data-e-type="container" id="stopka" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<div class="elementor-element elementor-element-dca2ef5 elementor-widget__width-inherit elementor-widget elementor-widget-html" data-id="dca2ef5" data-element_type="widget" data-e-type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+/* Import czcionki Krona One z Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+/* === STYLE STOPKI - WERSJA BIAŁA + DARK TEXT (#212a35) === */
+#stopka {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background-color: #ffffff;
+  color: #212a35; /* Główny nowy kolor tekstu */
+  overflow: hidden;
+  /* Zastosowanie nowej czcionki globalnie */
+  font-family: inherit;
+}
+
+.footerSlide {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+  padding: 60px 20px;
+  z-index: 2;
+}
+
+/* --- STRZAŁKA W GÓRĘ DO MIBOXER --- */
+.stopkaArrowUp {
+  position: absolute; 
+  top: 40px; 
+  left: 0; 
+  right: 0; 
+  margin: auto;
+  z-index: 10; 
+  cursor: pointer;
+  animation: arrowBounceUp 2s infinite ease-in-out;
+  width: 60px; 
+  height: 60px; 
+  border-radius: 50%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background: #212a35; 
+  color: #ffffff;
+}
+.stopkaArrowUp svg { width: 28px; height: 28px; fill: currentColor; display: block; }
+
+@keyframes arrowBounceUp { 
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(-10px); } 
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 5vw, 100px);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* --- LEWA KOLUMNA: FORMULARZ --- */
+.footerTitle {
+  font-size: 48px; /* Rozmiar z H1 z screenshota */
+  font-weight: 400; /* Krona One standardowo ma wagę 400 */
+  line-height: 1.2;
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+  color: #212a35; /* Tytuł cały "czarny" (ciemny) */
+  white-space: nowrap; 
+}
+
+@media (max-width: 1100px) {
+    .footerTitle { white-space: normal; }
+}
+
+/* Jeśli dodasz gdzieś .orangeAccent w nagłówku, teraz będzie ciemny tak jak prosiłeś */
+.orangeAccent { color: #212a35; } 
+
+.footerSubtitle {
+  font-size: 17px; /* Rozmiar tekstu z screenshota */
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  max-width: 480px;
+  line-height: 1.6;
+  color: #212a35; 
+}
+
+.contactForm { display: grid; gap: 20px; }
+
+/* Inputy */
+.inpGroup input, .inpGroup textarea {
+  width: 100%;
+  background: #F4F6F9;
+  border: 1px solid #D1D9E4;
+  border-radius: 12px;
+  padding: 18px 20px;
+  color: #212a35;
+  font-size: 15px; 
+  outline: none;
+  transition: 0.3s;
+  font-family: inherit;
+}
+.inpGroup textarea { resize: vertical; min-height: 140px; }
+
+.inpGroup input:focus, .inpGroup textarea:focus {
+  background: #ffffff;
+  border-color: #df3f19;
+  box-shadow: 0 4px 12px rgba(33, 42, 53, 0.1);
+}
+.inpGroup input::placeholder, .inpGroup textarea::placeholder {
+  color: rgba(33, 42, 53, 0.5);
+}
+
+/* --- PRZYCISK --- */
+.submitBtn {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  
+  background: #212a35; 
+  color: #ffffff;
+  border: 1px solid #212a35;
+  
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-weight: 400;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  font-family: inherit;
+}
+
+.submitBtn svg {
+    fill: currentColor;
+    width: 14px; height: 14px;
+}
+
+.submitBtn:hover { 
+  transform: translateY(-2px); 
+  background: #ffffff;
+  color: #212a35;
+  border-color: #212a35;
+}
+
+/* --- STRZAŁKA TYLKO NA MOBILE (formularz dół) --- */
+.footerMobileScroll {
+  display: none; 
+  margin: 10px auto 0 auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(33, 42, 53, 0.1);
+  align-items: center;
+  justify-content: center;
+  color: #212a35;
+  cursor: pointer;
+  animation: arrowBounce 2s infinite ease-in-out;
+  transition: background 0.3s;
+}
+.footerMobileScroll:hover { 
+    background: #212a35; 
+    color: #fff;
+}
+.footerMobileScroll svg { width: 24px; height: 24px; fill: currentColor; }
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* --- PRAWA KOLUMNA: DANE + LOGO --- */
+.footerInfoCol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.infoBlock { margin-bottom: 35px; }
+.infoLabel {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  color: #df3f19;
+  margin-bottom: 12px;
+}
+.infoContent {
+  font-size: 17px; 
+  line-height: 1.6;
+  font-weight: 400;
+  color: #212a35;
+}
+.infoContent a {
+  color: #212a35;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s;
+  border-bottom: 1px solid rgba(33, 42, 53, 0.2);
+}
+.infoContent a:hover { color: #df3f19; border-color: #df3f19; }
+
+/* DOLNA SEKCJA (LOGO + LINKI) */
+.bottomStack {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(33, 42, 53, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footerLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footerLogo img { 
+  height: 50px; 
+  width: auto; 
+  display: block; 
+  margin-bottom: 8px;
+  margin-left: 0;
+}
+
+.footerTagline {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 15px 0; 
+  opacity: 1;
+  color: #212a35;
+  margin-left: 3px; 
+}
+
+.legalLinks { display: flex; gap: 20px; flex-wrap: wrap; }
+.legalLink {
+  color: rgba(33, 42, 53, 0.6);
+  font-size: 13px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.legalLink:hover { color: #df3f19; }
+
+.socialRow { display: flex; gap: 15px; margin-top: 5px; }
+
+.socialIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(33, 42, 53, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  color: #212a35;
+  text-decoration: none;
+}
+.socialIcon:hover {
+  background: #212a35;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+.socialIcon svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* --- RESPONSYWNOŚĆ (MOBILE FIXES) --- */
+@media (max-width: 900px) {
+  .footerSlide { 
+    align-items: flex-start; 
+    padding: 0px 20px 60px 20px; 
+  }
+
+  /* Mobilna strzałka w górę */
+  .stopkaArrowUp { top: 20px; width: 45px; height: 45px; }
+  .stopkaArrowUp svg { width: 20px; height: 20px; }
+
+  .footerGrid { grid-template-columns: 1fr; gap: 30px; }
+   
+  .footerTitle { 
+    font-size: 32px;
+    text-align: center; 
+    white-space: normal;
+    margin-top: 80px; /* Zrobienie miejsca na strzałkę */
+  }
+   
+  .footerSubtitle { text-align: center; margin-left: auto; margin-right: auto; }
+  .submitBtn { width: 100%; justify-content: center; }
+   
+  .footerMobileScroll { display: flex; }
+
+  .footerInfoCol { 
+    text-align: center; 
+    align-items: center;
+    border-top: 1px solid rgba(33, 42, 53, 0.15);
+    padding-top: 30px; 
+    margin-top: 10px;
+  }
+   
+  .infoBlock { margin-bottom: 25px; } 
+
+  .bottomStack { 
+    align-items: center; 
+    border-top: none; 
+    padding-top: 10px; 
+    margin-top: 10px;
+    gap: 15px;
+  }
+  
+  .footerLogo { align-items: center; }
+  .footerTagline { margin-left: 0; }
+
+  .footerLogo img { height: 30px; }
+}
+</style>
+
+<div id="stopka">
+   
+  <div class="footerSlide">
+    
+    <div class="stopkaArrowUp" id="arrowToMiboxer">
+      <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+    </div>
+
+    <div class="footerGrid">
+       
+      <div class="footerFormCol">
+        <h2 class="footerTitle">Skontaktuj się z <span class="orangeAccent">nami</span></h2>
+        <p class="footerSubtitle">Masz pytania dotyczące dystrybucji lub produktów? Wypełnij formularz, a nasz zespół skontaktuje się z Tobą najszybciej jak to możliwe.</p>
+        
+        <form class="contactForm" action="/wyslij-wiadomosc" method="POST">
+          <div class="inpGroup"><input type="text" placeholder="Imię i nazwisko" required></div>
+          <div class="inpGroup"><input type="email" placeholder="Adres e-mail" required></div>
+          <div class="inpGroup"><input type="tel" placeholder="Numer telefonu"></div>
+          <div class="inpGroup"><textarea placeholder="Twoja wiadomość..."></textarea></div>
+          
+          <button type="submit" class="submitBtn">
+            Wyślij wiadomość 
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </button>
+        </form>
+
+        <div class="footerMobileScroll" id="scrollBtnMobile">
+          <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+        </div>
+      </div>
+
+      <div class="footerInfoCol" id="daneFirmyTarget">
+        
+        <div class="infoBlock">
+          <div class="infoLabel">Adres</div>
+          <div class="infoContent">
+            <strong>PRESCOT sp. z o.o.</strong><br>
+            ul. Wileńska 1<br>
+            11-500 Giżycko
+          </div>
+        </div>
+
+        <div class="infoBlock">
+          <div class="infoLabel">Biuro</div>
+          <div class="infoContent">
+            Tel.: <a href="tel:+48874282118">+48 87 428 21 18</a><br>
+            e-mail: <a href="mailto:sekretariat@prescot.pl">sekretariat@prescot.pl</a>
+          </div>
+        </div>
+
+        <div class="infoBlock">
+          <div class="infoLabel">Dział Sprzedaży</div>
+          <div class="infoContent">
+            Tel.: <a href="tel:+48877776482">+48 87 777 64 82</a><br>
+            e-mail: <a href="mailto:komponenty@prescot.pl">komponenty@prescot.pl</a>
+          </div>
+        </div>
+
+        <div class="bottomStack">
+          <div class="footerLogo">
+            <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-src="/wp-content/uploads/2025/12/PRESCOT_logo-podstawowe.svg" alt="Prescot LED Logo"><noscript><img src="/wp-content/uploads/2025/12/PRESCOT_logo-podstawowe.svg" alt="Prescot LED Logo"></noscript>
+            <p class="footerTagline">Polski producent oświetlenia <span style="color:#df3f19;">LED</span></p>
+          </div>
+
+          <div class="legalLinks">
+  <a href="/polityka-prywatnosci" class="legalLink">Polityka prywatności</a>
+  <a href="/regulamin" class="legalLink">Regulamin</a>
+  <a href="/owg" class="legalLink">OWG Prescot LED</a>
+</div>
+
+          <div class="socialRow">
+            <a href="https://www.linkedin.com/company/prescot-led/" target="_blank" rel="noopener" class="socialIcon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/prescot.gizycko" target="_blank" rel="noopener" class="socialIcon" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@prescot_led_gizycko" target="_blank" rel="noopener" class="socialIcon" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const mobileArrow = document.getElementById("scrollBtnMobile");
+  const targetSection = document.getElementById("daneFirmyTarget");
+
+  if (mobileArrow && targetSection) {
+    mobileArrow.addEventListener("click", () => {
+      targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  // --- NOWY SKRYPT: Strzałka do Miboxera ---
+  const arrowToMiboxer = document.getElementById("arrowToMiboxer");
+  if (arrowToMiboxer) {
+    arrowToMiboxer.addEventListener("click", () => {
+      const miboxerSection = document.querySelector(".is-miboxer");
+      if (miboxerSection) {
+        miboxerSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Fallback w razie gdyby sekcje były ładowane inaczej
+        window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+      }
+    });
+  }
+})();
+</script>				</div>
+				</div>
+				</div>
+				</footer>
+<!-- GLOBAL MENU START -->
+<nav class="prescot-dock" aria-label="Nawigacja główna">
+  <a href="/prescotled/" class="dock-item" data-tooltip="Prescot LED" aria-label="Prescot LED">
+    <svg class="dock-logo-icon" viewBox="0 0 378 258" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#e14e26" d="M0,0h106.7v50H0V0ZM0,100.9h97.7v48.2H0v-48.2ZM0,206.6h106.7v51.2H0v-51.2h0ZM149.3,100.7h82v48.4h-82v-48.4h0ZM149.3,0h87.4C317.7,0,377.9,42.6,377.9,128.9s-60.1,128.9-141.2,128.9h-87.4v-51.2h90.8c47.8,0,76.6-29.1,76.6-77.7s-27.6-78.8-76.6-78.8h-90.8V0h0Z"/>
+    </svg>
+  </a>
+
+  <a href="/produkty/" class="dock-item" data-tooltip="Oferta" aria-label="Oferta">
+    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z"/>
+    </svg>
+  </a>
+
+  <a href="/tasmy-led/" class="dock-item" data-tooltip="Taśmy LED" aria-label="Taśmy LED">
+    <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M224 192c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64zm400 224H380.6c41.5-40.7 67.4-97.3 67.4-160 0-123.7-100.3-224-224-224S0 132.3 0 256s100.3 224 224 224h400c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400-64c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96z"/>
+    </svg>
+  </a>
+
+  <a href="/produkcja/" class="dock-item" data-tooltip="Produkcja" aria-label="Produkcja">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M475.115 163.781L336 252.309v-68.28c0-18.916-20.931-30.399-36.885-20.248L160 252.309V56c0-13.255-10.745-24-24-24H24C10.745 32 0 42.745 0 56v400c0 13.255 10.745 24 24 24h464c13.255 0 24-10.745 24-24V184.029c0-18.917-20.931-30.399-36.885-20.248z"/>
+    </svg>
+  </a>
+
+  <a href="/dystrybucja/" class="dock-item" data-tooltip="Dystrybucja" aria-label="Dystrybucja">
+    <svg viewBox="0 0 640 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M128 352H32c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32zm-24-80h192v48h48v-48h192v48h48v-57.59c0-21.17-17.23-38.41-38.41-38.41H344v-64h40c17.67 0 32-14.33 32-32V32c0-17.67-14.33-32-32-32H256c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h40v64H94.41C73.23 224 56 241.23 56 262.41V320h48v-48zm264 80h-96c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32zm240 0h-96c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-96c0-17.67-14.33-32-32-32z"/>
+    </svg>
+  </a>
+
+  <a href="/baza-wiedzy/" class="dock-item" data-tooltip="Baza Wiedzy" aria-label="Baza Wiedzy & FAQ">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M256 32C132.3 32 32 132.3 32 256s100.3 224 224 224 224-100.3 224-224S379.7 32 256 32zm0 376c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm42.7-142.1c-13.8 11.2-26.7 21.6-26.7 46.1v10c0 8.8-7.2 16-16 16h-32c-8.8 0-16-7.2-16-16v-14c0-38.4 22.8-56.9 44.4-74.4 14.1-11.4 27.6-22.3 27.6-39.6 0-21.2-18.7-36-44-36-24.6 0-41.9 14.2-46.7 32.5-2.2 8.5-10.4 13.9-19.1 12.3l-30.8-5.6c-9.1-1.7-14.8-10.7-12.4-19.7C180.7 132.2 214.2 104 256 104c53 0 96 34.3 96 82 0 35.8-21.7 61.2-53.3 83.9z"/>
+    </svg>
+  </a>
+
+  <a href="https://prescot.abstore.pl/client/loginorcreate/login" class="dock-item b2b-trigger" data-tooltip="Strefa B2B" aria-label="B2B">
+    <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M576 216v16c0 13.255-10.745 24-24 24h-8l-26.113 182.788C514.509 462.435 494.257 480 470.37 480H105.63c-23.887 0-44.139-17.565-47.518-41.212L32 256h-8c-13.255 0-24-10.745-24-24v-16c0-13.255 10.745-24 24-24h67.341l106.78-146.821c10.395-14.292 30.407-17.453 44.701-7.058 14.293 10.395 17.453 30.408 7.058 44.701L170.477 192h235.046L326.12 82.821c-10.395-14.292-7.234-34.306 7.059-44.701 14.291-10.395 34.306-7.235 44.701 7.058L484.659 192H552c13.255 0 24 10.745 24 24zM312 392V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm112 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24zm-224 0V280c0-13.255-10.745-24-24-24s-24 10.745-24 24v112c0 13.255 10.745 24 24 24s24-10.745 24-24z"/>
+    </svg>
+  </a>
+
+  <a href="/kontakt/" class="dock-item" data-tooltip="Kontakt" aria-label="Kontakt">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 14l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C4.1 366.5-1.8 378.1.8 389.4l24 104C27.3 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-21-18.6-23.4z"/>
+    </svg>
+  </a>
+
+  <div class="dock-lang-item">
+    <div class="gtranslate_wrapper" id="gt-wrapper-85632840"></div>
+  </div>
+</nav>
+<!-- GLOBAL MENU END -->
+<!-- GLOBAL TRANSLATE START -->
+<script>
+window.gtranslateSettings = window.gtranslateSettings || {};
+window.gtranslateSettings['85632840'] = {"default_language":"pl","languages":["ar","zh-CN","cs","da","en","et","fi","fr","de","it","lt","pl","es","sv"],"url_structure":"none","flag_style":"3d","alt_flags":[],"float_switcher_open_direction":"top","flags_location":"/wp-content/plugins/gtranslate/flags/","wrapper_selector":".gtranslate_wrapper"};
+</script>
+<script src="/wp-content/plugins/gtranslate/js/float.js?ver=3.1.1" data-no-optimize="1" data-no-minify="1" data-gt-widget-id="85632840" defer></script>
+<!-- GLOBAL TRANSLATE END -->
+<script src="/local-navigation.js?v=20260901-white-dock" defer></script>
+</body>
+</html>
