@@ -1568,13 +1568,18 @@ svg.p-pure-arrow-down {
 
 /* 2. NA JASNYCH / BIAŁYCH POLACH (OFERTA, PRODUKTY, BIAŁE BLOKI): GRANATOWA FIRMOWA (#19222e) */
 .prescot-scroll-down.is-light svg,
+.prescot-scroll-down.is-light svg path,
 .p-hero-arrow-down.is-light svg,
+.p-hero-arrow-down.is-light svg path,
 body.page-oferta .prescot-scroll-down svg,
+body.page-oferta .prescot-scroll-down svg path,
 body.page-produkty .prescot-scroll-down svg,
-body:has(.dm-card-slider) .prescot-scroll-down svg {
+body.page-produkty .prescot-scroll-down svg path,
+body:has(.dm-card-slider) .prescot-scroll-down svg,
+body:has(.dm-card-slider) .prescot-scroll-down svg path {
   fill: #19222e !important;
   color: #19222e !important;
-  filter: drop-shadow(0 2px 6px rgba(25, 34, 46, 0.28)) !important;
+  filter: drop-shadow(0 2px 6px rgba(25, 34, 46, 0.35)) !important;
 }
 
 .prescot-scroll-down:hover svg,

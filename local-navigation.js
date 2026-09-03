@@ -191,29 +191,52 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Dynamiczne wykrywanie jasnego tła pod strzałką:
-      // Wykryj element znajdujący się na dole ekranu (w pozycji strzałki)
-      const testX = window.innerWidth / 2;
-      const testY = window.innerHeight - 80;
-      const elUnder = document.elementFromPoint(testX, testY);
-
+      const pPath = window.location.pathname.toLowerCase();
       let isLightBg = false;
-      if (elUnder) {
-        const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .dm-card-slider, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
-        if (lightParent) {
+
+      // 1. Strony całkowicie jasne (Oferta, Produkty)
+      if (pPath.includes("oferta") || pPath.includes("produkty") || document.querySelector(".dm-card-slider")) {
+        isLightBg = true;
+      }
+
+      // 2. Dystrybucja: Hero jest ciemne (budynek), a CAŁA RESZTA PONIŻEJ HERO (dlaczego-warto, formularz, slajdy KLUŚ, Scharfer, ELBA, MiBoxer) jest BIAŁA (#ffffff)!
+      if (pPath.includes("dystrybucja")) {
+        const heroEl = document.querySelector(".distribution-intro, .dist-hero-section");
+        const heroH = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight) : 550;
+        if (currentScrollY > heroH - 220) {
           isLightBg = true;
         } else {
-          // Oblicz jasność tła elementu
-          const bg = window.getComputedStyle(elUnder).backgroundColor;
-          const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-          if (rgb) {
-            const lum = (parseInt(rgb[1]) * 299 + parseInt(rgb[2]) * 587 + parseInt(rgb[3]) * 114) / 1000;
-            if (lum > 175) isLightBg = true;
+          isLightBg = false;
+        }
+      }
+
+      // 3. Sprawdź element fizycznie znajdujący się pod strzałką
+      if (!isLightBg) {
+        const testX = window.innerWidth / 2;
+        const testY = window.innerHeight - 80;
+        const elUnder = document.elementFromPoint(testX, testY);
+        if (elUnder) {
+          const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .distWrap, .distSlide, .distGrid, .distCard, #dystrybucja-marki, .dm-card-slider, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
+          if (lightParent) {
+            isLightBg = true;
+          } else {
+            // Przejdź w górę drzewa DOM w poszukiwaniu nietransparentnego tła
+            let cur = elUnder;
+            while (cur && cur !== document.body) {
+              const bg = window.getComputedStyle(cur).backgroundColor;
+              const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+              if (rgb && !bg.includes("rgba(0, 0, 0, 0)") && !bg.includes("transparent")) {
+                const lum = (parseInt(rgb[1]) * 299 + parseInt(rgb[2]) * 587 + parseInt(rgb[3]) * 114) / 1000;
+                if (lum > 170) isLightBg = true;
+                break;
+              }
+              cur = cur.parentElement;
+            }
           }
         }
       }
 
-      const pPath = window.location.pathname.toLowerCase();
-      if (isLightBg || pPath.includes("oferta") || pPath.includes("produkty")) {
+      if (isLightBg) {
         scrollDownBtn.classList.add("is-light");
       } else {
         scrollDownBtn.classList.remove("is-light");
