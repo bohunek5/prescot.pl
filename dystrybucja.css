@@ -663,62 +663,174 @@
   }
 }
 
-/* RÓWNE BLOKI LEWO / PRAWO DLA WSZYSTKICH MAREK (PRESCOT, KLUŚ, SCHARFER, ELBA, MIBOXER) */
-.distSlide .distGrid {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important;
-  gap: clamp(24px, 4vw, 56px) !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 1240px !important;
-  margin: 0 auto !important;
-  position: relative !important;
-  z-index: 2 !important;
-}
 
-.distSlide .distContentBox {
-  background: #ffffff !important;
-  border-radius: var(--radius, 20px) !important;
-  padding: clamp(28px, 4vw, 46px) !important;
-  box-shadow: 0 18px 55px rgba(0,0,0,.10) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
+/* ==========================================================================
+   BLOK OPIS = BLOK LOGO (SYMERTIA 1:1, LOGO PO PRAWEJ NA DESKTOP, MOBILKI)
+   ========================================================================== */
 
-.distSlide .distCard {
-  background: #ffffff !important;
-  border-radius: var(--radius, 20px) !important;
-  box-shadow: 0 18px 55px rgba(0,0,0,.15) !important;
-  aspect-ratio: 1 / 1 !important;
-  width: 100% !important;
-  max-width: 480px !important;
-  justify-self: end !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  overflow: hidden !important;
-  padding: 36px !important;
-  box-sizing: border-box !important;
-}
-
-.distSlide .distCard img {
-  max-width: 86% !important;
-  max-height: 86% !important;
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  display: block !important;
-  margin: auto !important;
-}
-
-@media (max-width: 991px) {
+/* --- DESKTOP (od 992px) --- */
+@media (min-width: 992px) {
   .distSlide .distGrid {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Równe kolumny 50% / 50% */
+    gap: clamp(24px, 3.5vw, 48px) !important;
+    align-items: stretch !important; /* Obie karty rozciągają się do identycznej wysokości */
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
+
+  /* Blok opisowy: LEWO */
+  .distSlide .distContentBox {
+    order: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 450px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.09) !important;
+    padding: clamp(32px, 4vw, 54px) !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Blok logo: PRAWO (identyczne wymiary, promień i cień) */
   .distSlide .distCard {
-    justify-self: center !important;
-    max-width: 380px !important;
+    order: 2 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 450px !important;
+    aspect-ratio: auto !important; /* Uwalniamy 1/1, aby trzymał równą wysokość z blokiem opisu */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #ffffff !important;
+    border-radius: 24px !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.09) !important;
+    padding: clamp(32px, 4vw, 54px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    justify-self: stretch !important;
+  }
+
+  /* Logotypy wewnątrz karty */
+  .distSlide .distCard img {
+    max-width: 82% !important;
+    max-height: 170px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: auto !important;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.03)) !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .distSlide .distCard:hover img {
+    transform: scale(1.04) !important;
+  }
+
+  /* Optyczne dopasowanie logotypów */
+  .distSlide.is-prescot .distCard img { max-height: 120px !important; max-width: 84% !important; }
+  .distSlide.is-klus .distCard img { max-height: 135px !important; max-width: 80% !important; }
+  .distSlide.is-scharfer .distCard img { max-height: 145px !important; max-width: 80% !important; }
+  .distSlide.is-elba .distCard img { max-height: 95px !important; max-width: 85% !important; }
+  .distSlide.is-miboxer .distCard img { max-height: 135px !important; max-width: 80% !important; }
+}
+
+/* --- MOBILE & TABLET (do 991px) - PERFEKCYJNY UKŁAD MOBILNY --- */
+@media (max-width: 991px) {
+  .distSlide {
+    min-height: 100svh !important;
+    padding: 80px 16px 110px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .distSlide .distGrid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Na mobile: Blok z Logo U GÓRY jako elegancka wizytówka marki */
+  .distSlide .distCard {
+    display: flex !important;
+    order: 1 !important;
+    width: 100% !important;
+    height: 120px !important;
+    min-height: 120px !important;
+    aspect-ratio: auto !important;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 18px 24px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  .distSlide .distCard img {
+    max-width: 75% !important;
+    max-height: 68px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: auto !important;
+  }
+
+  /* Na mobile: Blok z Opisem POD SPODEM z pełnym tekstem i przyciskiem */
+  .distSlide .distContentBox {
+    display: flex !important;
+    flex-direction: column !important;
+    order: 2 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 26px 20px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+
+  .distSlide .distKicker {
+    font-size: 11.5px !important;
+    letter-spacing: 0.06em !important;
+    margin-bottom: 8px !important;
+  }
+
+  .distSlide .distTitle {
+    font-size: 22px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .distSlide .distText {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .distSlide .distBtn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 20px !important;
+    font-size: 14.5px !important;
   }
 }
