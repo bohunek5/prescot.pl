@@ -1640,3 +1640,16 @@ html {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
 }
+
+
+/* UKRYCIE WSZELKICH SZTYWNYCH STRZAŁEK Z SZABLONÓW - ZOSTAJE TYLKO JEDNA INTELIGENTNA STRZAŁKA GLOBALNA */
+.distArrow,
+.distArrowUp,
+.stopkaArrowUp,
+.slide-arrow-down,
+.slide-arrow-up {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
