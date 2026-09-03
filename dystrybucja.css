@@ -431,3 +431,19 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ELBA Slide styles */
+.distSlide.is-elba .distBtn { background: #005aa9; color: #fff; border-color: #005aa9; }
+.distSlide.is-elba .distBtn span { background: #fff; color: #005aa9; }
+.distSlide.is-elba .distBtn:hover { background: transparent; border-color: #005aa9; color: #005aa9; }
+.distSlide.is-elba .distBtn:hover span { background: #005aa9; color: #fff; }
+.distSlide.is-elba .distArrow, .distSlide.is-elba .distArrowUp { background: #005aa9; color: #ffffff; }
+.distSlide.is-elba .distCard img { max-width: 100%; height: auto; object-fit: contain; }
+
+.dist-explore-header {
+  text-align: center;
+  padding: 60px 24px 20px;
+  background: #ffffff;
+  position: relative;
+  z-index: 2;
+}
