@@ -1466,7 +1466,7 @@ window.addEventListener("load", () => {
     let baseCount = Number(slide.dataset.count || 10);
 
     if (useLanes) {
-      const rows = isMobile ? 8 : 6;
+      const rows = isMobile ? (isElba ? 4 : 8) : (isElba ? 5 : 6);
       baseCount = numLanes * rows;
     }
 
@@ -1493,8 +1493,8 @@ window.addEventListener("load", () => {
         targetMinPx = 200;
         targetMaxPx = 340;
       } else if (isElba) {
-        targetMinPx = 110;
-        targetMaxPx = 180;
+        targetMinPx = 260;
+        targetMaxPx = 440;
       } else if (isMiboxer) {
         targetMinPx = 140;
         targetMaxPx = 240;
@@ -1513,8 +1513,8 @@ window.addEventListener("load", () => {
         targetMinPx = 340;
         targetMaxPx = 620;
       } else if (isElba) {
-        targetMinPx = 200;
-        targetMaxPx = 340;
+        targetMinPx = 260;
+        targetMaxPx = 440;
       } else if (isMiboxer) {
         targetMinPx = 180;
         targetMaxPx = 300;
@@ -1533,13 +1533,29 @@ window.addEventListener("load", () => {
       let duration;
       let delay;
 
-      if (useLanes) {
+      if (isElba) {
+        const laneIdx = i % numLanes;
+        const row = Math.floor(i / numLanes);
+        widthPx = rand(targetMinPx, targetMaxPx);
+
+        // Precyzyjne korytarze (zero kolizji poziomych między pasmami)
+        const centers = isMobile ? [26, 74] : [18, 50, 82];
+        const centerVw = centers[laneIdx % centers.length];
+        const screenW = window.innerWidth || 1440;
+        const widthVw = (widthPx / screenW) * 100;
+        xPos = centerVw - (widthVw / 2) + rand(-1.2, 1.2);
+
+        // Precyzyjny stagger czasowy (zero kolizji pionowych w tym samym paśmie)
+        duration = 52;
+        const rows = isMobile ? 4 : 5;
+        delay = - (row / rows) * duration - (laneIdx * (duration / (numLanes * 1.6)));
+      } else if (useLanes) {
         const laneIdx = i % numLanes;
         widthPx = rand(targetMinPx, targetMaxPx);
         const laneStart = laneIdx * laneWidth;
 
         xPos = laneStart + rand(-6, 6);
-        duration = isPrescot ? 55 : (isMiboxer ? 35 : (isElba ? 48 : 45));
+        duration = isPrescot ? 55 : (isMiboxer ? 35 : 45);
         delay = - (i / baseCount) * duration;
       } else {
         widthPx = rand(targetMinPx, targetMaxPx);
@@ -1553,8 +1569,8 @@ window.addEventListener("load", () => {
       el.style.setProperty("--t", duration + "s");
       el.style.setProperty("--d", delay + "s");
       el.style.setProperty("--r", rand(-10, 10) + "deg");
-      el.style.setProperty("--dr", rand(-15, 15) + "deg");
-      el.style.setProperty("--dx", rand(-2, 2) + "vw");
+      el.style.setProperty("--dr", (isElba ? rand(-8, 8) : rand(-15, 15)) + "deg");
+      el.style.setProperty("--dx", (isElba ? rand(-0.8, 0.8) : rand(-2, 2)) + "vw");
 
       const img = document.createElement("img");
       img.src = imgPool[i % imgPool.length];
