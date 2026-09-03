@@ -190,6 +190,16 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollDownBtn.classList.remove("psd-hidden");
       }
 
+      // Jeśli użytkownik jest w sekcji formularza, ukryj strzałkę, aby pod żadnym pozorem nie wchodziła pod przycisk wysyłki!
+      const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form");
+      if (formEl) {
+        const fRect = formEl.getBoundingClientRect();
+        if (fRect.top < window.innerHeight * 0.75 && fRect.bottom > window.innerHeight * 0.2) {
+          scrollDownBtn.classList.add("psd-hidden");
+          return;
+        }
+      }
+
       // Dynamiczne wykrywanie jasnego tła pod strzałką:
       const pPath = window.location.pathname.toLowerCase();
       let isLightBg = false;
