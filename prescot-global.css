@@ -1509,15 +1509,16 @@ a[href="#masthead"],
 /* =========================================================
 
 
+
 /* =========================================================
-   PRESCOT PURE SCROLL-DOWN ARROWS (DUŻA, SOLIDNA, WIDOCZNA)
+   PRESCOT PURE SCROLL-DOWN ARROWS (PULSUJĄCA, DUŻA, WIDOCZNA)
    ========================================================= */
 .prescot-scroll-down,
 .p-hero-arrow-down {
   position: fixed !important;
   bottom: 96px !important;
   left: 50% !important;
-  transform: translateX(-50%) !important;
+  margin-left: -22px !important;
   z-index: 999 !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -1527,8 +1528,7 @@ a[href="#masthead"],
   background: transparent !important;
   border: none !important;
   outline: none !important;
-  padding: 6px !important;
-  animation: prescotArrowLevitate 2.8s ease-in-out infinite !important;
+  padding: 0 !important;
   transition: opacity 0.3s ease !important;
 }
 
@@ -1541,20 +1541,20 @@ a[href="#masthead"],
 .prescot-scroll-down.psd-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
-  transform: translate(-50%, 16px) !important;
 }
 
-/* ROZMIAR STRZAŁKI: BOLD, 44px x 48px (DOKŁADNIE JAK ZE SCREENSHOTA Z TAŚM) */
+/* ROZMIAR STRZAŁKI: BOLD, 44px x 48px + ANIMACJA PULSOWANIA I LEWITACJI */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
   width: 44px !important;
   height: 48px !important;
   display: block !important;
+  animation: pArrowPulseLevitate 2.2s ease-in-out infinite !important;
   transition: fill 0.25s ease, filter 0.25s ease !important;
 }
 
-/* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) */
+/* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) Z MOCNYM BLASKIEM */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
@@ -1579,16 +1579,19 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
   fill: #ff5533 !important;
 }
 
-/* LEKKO DÓŁ-GÓRA (LEWITACJA 18PX) */
-@keyframes prescotArrowLevitate {
+/* PŁYNNE PULSOWANIE + RUCH GÓRA-DÓŁ (LEWITACJA) */
+@keyframes pArrowPulseLevitate {
   0% {
-    transform: translate(-50%, 0px);
+    transform: translateY(0px) scale(1);
+    opacity: 0.88;
   }
   50% {
-    transform: translate(-50%, 18px);
+    transform: translateY(16px) scale(1.1);
+    opacity: 1;
   }
   100% {
-    transform: translate(-50%, 0px);
+    transform: translateY(0px) scale(1);
+    opacity: 0.88;
   }
 }
 
@@ -1596,6 +1599,7 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
   .prescot-scroll-down,
   .p-hero-arrow-down {
     bottom: 84px !important;
+    margin-left: -17px !important;
   }
   .prescot-scroll-down svg,
   .p-hero-arrow-down svg,
@@ -1603,10 +1607,10 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
     width: 34px !important;
     height: 38px !important;
   }
-  @keyframes prescotArrowLevitate {
-    0% { transform: translate(-50%, 0px); }
-    50% { transform: translate(-50%, 12px); }
-    100% { transform: translate(-50%, 0px); }
+  @keyframes pArrowPulseLevitate {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(12px) scale(1.08); }
+    100% { transform: translateY(0px) scale(1); }
   }
 }
 
