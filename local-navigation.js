@@ -77,6 +77,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 2b. Utworzenie inteligentnej strzałki w dół (Scroll-Down) nad dockiem
   let scrollDownBtn = document.getElementById("prescotScrollDown");
+
+  // Pomocnicza funkcja: pobiera wyłącznie główne, nienadrzędne bloki/sekcje strony
+  function getTopLevelSections() {
+    const candidates = document.querySelectorAll(
+      ".e-parent, section, .distSlide, .dist-why-section, .dist-form-section, #stopka, #kreci, #prawdziwe-mozliwosci, .distribution-intro, .site-footer, [id^='sec']"
+    );
+    const cSet = new Set(candidates);
+    const topSections = [];
+    
+    candidates.forEach(el => {
+      let isNested = false;
+      let p = el.parentElement;
+      while (p && p !== document.body) {
+        if (cSet.has(p)) {
+          isNested = true;
+          break;
+        }
+        p = p.parentElement;
+      }
+      if (!isNested && el.offsetHeight > 80) {
+        topSections.push(el);
+      }
+    });
+    return topSections;
+  }
+
   function checkScrollDown() {
     const pName = (window.location.pathname || "").toLowerCase();
     
@@ -97,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (document.getElementById("prescotScrollDown")) return;
 
-    // Sprawdź czy strona ma więcej treści (dla stron standardowych typu produkcja, dystrybucja, b2b, kontakt, owg)
+    // Sprawdź czy strona ma więcej treści
     const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
     const winH = window.innerHeight || 700;
     const hasMoreContent = docH > (winH + 30);
@@ -106,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollDownBtn = document.createElement("a");
       scrollDownBtn.id = "prescotScrollDown";
       scrollDownBtn.className = "prescot-scroll-down";
-      scrollDownBtn.setAttribute("aria-label", "Przewiń stronę w dół");
+      scrollDownBtn.setAttribute("aria-label", "Przewiń do kolejnego bloku");
       scrollDownBtn.setAttribute("href", "#");
       scrollDownBtn.innerHTML = `
         <svg class="p-pure-arrow-down" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
@@ -115,11 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       document.body.appendChild(scrollDownBtn);
 
-      // Automatyczne wykrywanie jasnego tła:
-      // TYLKO strony o jasnym tle (oferta, produkty, jasne slidery) mają granatową firmową (#19222e)!
-      // Na ciemnych tłach (Dystrybucja z ciemnym budynkiem, Produkcja, Taśmy LED, Silpro, 160s, Kontakt) -> BIAŁA STRZAŁKA!
-      const pName = window.location.pathname.toLowerCase();
-      const isLight = pName.includes("oferta") || pName.includes("produkty") || (document.querySelector(".dm-card-slider") !== null && !document.body.classList.contains("mdw-card-portfolio"));
+      const isLight = pName.includes("oferta") || pName.includes("produkty");
       if (isLight) {
         scrollDownBtn.classList.add("is-light");
       }
@@ -127,36 +149,23 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollDownBtn.addEventListener("click", (e) => {
         e.preventDefault();
         
-        // Znajdź idealnie kolejny blok poniżej obecnej pozycji
-        const currentY = window.scrollY || window.pageYOffset;
-        const candidateSelectors = [
-          "#dlaczego-warto", "#zostan-dystrybutorem", "#sprawdz-nasza-oferte", "#sl-prescot", "#sl-klus",
-          "#kreci", "#prawdziwe-mozliwosci",
-          "#true1", "#true2", "#true3", "#true4", "#true5",
-          ".dist-why-section", ".dist-form-section",
-          ".p-full-hero + *", "section:not(:first-child)", "[data-element_type='container']:not(:first-child)"
-        ];
+        const topSections = getTopLevelSections();
+        const winH = window.innerHeight || 700;
 
-        let nextBlock = null;
-        let minDiff = Infinity;
-
-        for (const sel of candidateSelectors) {
-          const els = document.querySelectorAll(sel);
-          for (const el of els) {
-            const rect = el.getBoundingClientRect();
-            const elTop = rect.top + currentY;
-            const diff = elTop - currentY;
-            if (diff > 60 && diff < minDiff) {
-              minDiff = diff;
-              nextBlock = el;
-            }
+        let nextSec = null;
+        for (const sec of topSections) {
+          const rect = sec.getBoundingClientRect();
+          // Szukamy sekcji, której górna krawędź zaczyna się poniżej linii wzroku (+60px)
+          if (rect.top > 60) {
+            nextSec = sec;
+            break;
           }
         }
 
-        if (nextBlock) {
-          nextBlock.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (nextSec) {
+          nextSec.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          window.scrollBy({ top: Math.round(window.innerHeight * 0.95), behavior: "smooth" });
+          window.scrollBy({ top: Math.round(winH * 0.9), behavior: "smooth" });
         }
       });
     }
@@ -177,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentScrollY = window.scrollY;
     const heroEl = document.querySelector(".p-full-hero, .hero-section, .hero, .catalog-hero, .elementor-top-section, [data-element_type='container']:first-child");
     const heroHeight = heroEl ? heroEl.offsetHeight : (window.innerHeight || 700);
-    const heroThreshold = Math.max(200, heroHeight * 0.65);
+    const heroThreshold = Math.max(120, Math.min(260, heroHeight * 0.45));
 
     if (smartLogo) {
       if (currentScrollY <= heroThreshold) {
@@ -197,11 +206,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (scrollDownBtn) {
       const docTotalH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-      const scrollBottom = docTotalH - (currentScrollY + window.innerHeight);
-      
       const winH = window.innerHeight || 700;
+      const scrollBottom = docTotalH - (currentScrollY + winH);
 
-      // 1. Formularz lub sam dół strony (stopka) -> ZAWSZE UKRYTE
+      // 1. Formularz kontaktowy lub sam dół strony (stopka) -> ZAWSZE UKRYTE
       const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form, .contactForm");
       let isInsideForm = false;
       if (formEl) {
@@ -210,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
           isInsideForm = true;
         }
       }
-      const isAtVeryEndOfPage = scrollBottom < 120;
+      const isAtVeryEndOfPage = scrollBottom < 80;
 
       if (isInsideForm || isAtVeryEndOfPage) {
         scrollDownBtn.classList.add("psd-hidden");
@@ -218,31 +226,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // 2. Startowo na Hero: pozycja bez zmian (WIDOCZNA)
-      const heroThreshold = Math.max(120, Math.min(260, heroHeight * 0.4));
       const isAtHero = currentScrollY <= heroThreshold;
 
-      // 3. Dolna krawędź strony: gdy dobijamy do dołu treści strony przed stopką
-      const isAtBottomEdge = (scrollBottom <= 550 && scrollBottom >= 140);
-
-      // 4. Dla Dystrybucji: na slajdach marek (pełny ekran) strzałka pozwala przejść dalej
-      const isDystrybucjaSlide = document.querySelector(".distSlide") !== null && Array.from(document.querySelectorAll(".distSlide")).some(slide => {
-        const r = slide.getBoundingClientRect();
-        return r.top >= -100 && r.bottom <= winH + 100;
-      });
-
-      // ZASADA KAROLA:
-      // - Startowo na Hero -> JEST (pozycja bez zmian)
-      // - Na środkach stron -> STRZAŁKI MA NIE BYĆ!
-      // - Jak dobijamy do dolnej krawędzi -> MA BYĆ!
       let shouldShowArrow = false;
 
       if (isAtHero) {
         shouldShowArrow = true;
-      } else if (isAtBottomEdge || isDystrybucjaSlide) {
-        shouldShowArrow = true;
       } else {
-        // W środku stron / w trakcie czytania treści -> ZERO STRZAŁKI (brak migania i losowości!)
-        shouldShowArrow = false;
+        // 3. Sprawdzamy każdy kolejny blok / sekcję:
+        // Strzałka pojawia się, gdy użytkownik znajduje się na ~75-80% aktualnie oglądanego bloku:
+        const topSections = getTopLevelSections();
+        for (let i = 0; i < topSections.length; i++) {
+          const sec = topSections[i];
+          // Jeśli to ostatnia sekcja na stronie (np. stopka) -> brak strzałki w dół
+          if (i === topSections.length - 1) continue;
+
+          const rect = sec.getBoundingClientRect();
+          const secH = sec.offsetHeight;
+
+          // Czy sekcja jest aktualnie widoczna na ekranie?
+          if (rect.top < winH * 0.7 && rect.bottom > 80) {
+            // Sprawdź czy to pełnoekranowy slajd (100vh) w Dystrybucji
+            const isFullScreen = Math.abs(secH - winH) < 140 || sec.classList.contains("distSlide");
+            if (isFullScreen) {
+              if (rect.top >= -80 && rect.bottom <= winH + 80) {
+                shouldShowArrow = true;
+                break;
+              }
+            } else {
+              // Dla dłuższych bloków:
+              // Strzałka pojawia się na ~75-80% bloku (gdy dół bloku jest w odległości <= 380px od dołu okna)
+              const remainingBelow = rect.bottom - winH;
+              if (remainingBelow <= 380 && rect.bottom >= 80) {
+                shouldShowArrow = true;
+                break;
+              }
+            }
+          }
+        }
       }
 
       if (shouldShowArrow) {
@@ -256,11 +277,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let isLightBg = false;
 
       // 1. Strony całkowicie jasne (Oferta, Produkty)
-      if (pPath.includes("oferta") || pPath.includes("produkty") || document.querySelector(".dm-card-slider")) {
+      if (pPath.includes("oferta") || pPath.includes("produkty")) {
         isLightBg = true;
       }
 
-      // 2. Dystrybucja: Hero jest ciemne (budynek), a CAŁA RESZTA PONIŻEJ HERO (dlaczego-warto, formularz, slajdy KLUŚ, Scharfer, ELBA, MiBoxer) jest BIAŁA (#ffffff)!
+      // 2. Dystrybucja: Hero jest ciemne (budynek), a CAŁA RESZTA PONIŻEJ HERO jest BIAŁA (#ffffff)!
       if (pPath.includes("dystrybucja")) {
         const heroEl = document.querySelector(".distribution-intro, .dist-hero-section");
         const heroH = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight) : 550;
@@ -277,11 +298,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const testY = window.innerHeight - 80;
         const elUnder = document.elementFromPoint(testX, testY);
         if (elUnder) {
-          const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .distWrap, .distSlide, .distGrid, .distCard, #dystrybucja-marki, .dm-card-slider, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
+          const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .distWrap, .distSlide, .distGrid, .distCard, #dystrybucja-marki, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
           if (lightParent) {
             isLightBg = true;
           } else {
-            // Przejdź w górę drzewa DOM w poszukiwaniu nietransparentnego tła
             let cur = elUnder;
             while (cur && cur !== document.body) {
               const bg = window.getComputedStyle(cur).backgroundColor;
@@ -304,8 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-
-    const currentDock = document.querySelector(".prescot-dock");
+        const currentDock = document.querySelector(".prescot-dock");
     if (currentDock) {
       if (currentScrollY < 30) {
         currentDock.classList.remove("dock-hidden");
