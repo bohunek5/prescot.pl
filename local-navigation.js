@@ -217,41 +217,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 2. Startowo na Hero: gdy wchodzimy na stronę / jesteśmy w sekcji Hero na podstronach -> pozycja bez zmian (WIDOCZNA)
-      const heroThreshold = Math.max(80, Math.min(180, heroHeight * 0.3));
+      // 2. Startowo na Hero: pozycja bez zmian (WIDOCZNA)
+      const heroThreshold = Math.max(120, Math.min(260, heroHeight * 0.4));
       const isAtHero = currentScrollY <= heroThreshold;
 
+      // 3. Dolna krawędź strony: gdy dobijamy do dołu treści strony przed stopką
+      const isAtBottomEdge = (scrollBottom <= 550 && scrollBottom >= 140);
+
+      // 4. Dla Dystrybucji: na slajdach marek (pełny ekran) strzałka pozwala przejść dalej
+      const isDystrybucjaSlide = document.querySelector(".distSlide") !== null && Array.from(document.querySelectorAll(".distSlide")).some(slide => {
+        const r = slide.getBoundingClientRect();
+        return r.top >= -100 && r.bottom <= winH + 100;
+      });
+
+      // ZASADA KAROLA:
+      // - Startowo na Hero -> JEST (pozycja bez zmian)
+      // - Na środkach stron -> STRZAŁKI MA NIE BYĆ!
+      // - Jak dobijamy do dolnej krawędzi -> MA BYĆ!
       let shouldShowArrow = false;
 
       if (isAtHero) {
         shouldShowArrow = true;
+      } else if (isAtBottomEdge || isDystrybucjaSlide) {
+        shouldShowArrow = true;
       } else {
-        // 3. Na środkach stron strzałki ma NIE być. Pojawia się dopiero, gdy dobijamy do dolnej krawędzi bloku / sekcji:
-        const majorSections = document.querySelectorAll(
-          "section, .distSlide, .dist-why-section, [id^='sl-'], #kreci, #prawdziwe-mozliwosci, [data-element_type='container'], .elementor-top-section"
-        );
-
-        for (const sec of majorSections) {
-          if (sec === heroEl || sec.offsetHeight < 160) continue;
-          const rect = sec.getBoundingClientRect();
-
-          // Sprawdź czy to pełnoekranowy slajd (100vh) w trybie prezentacji
-          const isFullScreenSlide = Math.abs(sec.offsetHeight - winH) < 140 || sec.classList.contains("distSlide");
-          if (isFullScreenSlide) {
-            if (rect.top >= -80 && rect.bottom <= winH + 80) {
-              shouldShowArrow = true;
-              break;
-            }
-          } else {
-            // Dla standardowych długich bloków (treść, opisy, maszyny, tabele):
-            // Dobijamy do dolnej krawędzi bloku, gdy dolna krawędź sekcji wchodzi w dół ekranu:
-            const distFromBottom = rect.bottom - winH;
-            if (distFromBottom >= -60 && distFromBottom <= 200) {
-              shouldShowArrow = true;
-              break;
-            }
-          }
-        }
+        // W środku stron / w trakcie czytania treści -> ZERO STRZAŁKI (brak migania i losowości!)
+        shouldShowArrow = false;
       }
 
       if (shouldShowArrow) {
