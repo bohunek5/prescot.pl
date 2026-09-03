@@ -1691,12 +1691,10 @@ body.has-card-slider #prescotScrollDown {
   position: absolute !important;
   inset: 0 !important;
   background: linear-gradient(90deg, 
-    #000000 0%, 
-    #000000 52%, 
-    rgba(0, 0, 0, 0.98) 60%, 
-    rgba(0, 0, 0, 0.80) 70%, 
-    rgba(0, 0, 0, 0.25) 82%, 
-    transparent 94%) !important;
+    rgba(4, 6, 12, 0.78) 0%, 
+    rgba(4, 6, 12, 0.60) 42%, 
+    rgba(4, 6, 12, 0.22) 75%, 
+    transparent 100%) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
@@ -1755,12 +1753,10 @@ body.has-card-slider #prescotScrollDown {
   position: absolute !important;
   inset: 0 !important;
   background: linear-gradient(90deg, 
-    #000000 0%, 
-    #000000 52%, 
-    rgba(0, 0, 0, 0.98) 60%, 
-    rgba(0, 0, 0, 0.80) 70%, 
-    rgba(0, 0, 0, 0.25) 82%, 
-    transparent 94%) !important;
+    rgba(4, 6, 12, 0.78) 0%, 
+    rgba(4, 6, 12, 0.60) 42%, 
+    rgba(4, 6, 12, 0.22) 75%, 
+    transparent 100%) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
@@ -2101,4 +2097,14 @@ body.has-card-slider #prescotScrollDown {
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
+}
+
+.elementor-element-4ed8b80 {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
