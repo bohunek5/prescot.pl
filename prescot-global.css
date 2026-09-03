@@ -1691,12 +1691,12 @@ body.has-card-slider #prescotScrollDown {
   position: absolute !important;
   inset: 0 !important;
   background: linear-gradient(90deg, 
-    #030509 0%, 
-    #030509 46%, 
-    rgba(3, 5, 9, 0.98) 52%, 
-    rgba(3, 5, 9, 0.78) 59%, 
-    rgba(3, 5, 9, 0.28) 68%, 
-    transparent 76%) !important;
+    #000000 0%, 
+    #000000 55%, 
+    rgba(0, 0, 0, 0.96) 63%, 
+    rgba(0, 0, 0, 0.76) 74%, 
+    rgba(0, 0, 0, 0.30) 84%, 
+    transparent 92%) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
@@ -1752,10 +1752,10 @@ body.has-card-slider #prescotScrollDown {
 @media (max-width: 991px) {
   .elementor-element-41e0875b::before {
     background: linear-gradient(180deg, 
-      #030509 0%, 
-      #030509 48%, 
-      rgba(3, 5, 9, 0.85) 62%, 
-      transparent 82%) !important;
+      #000000 0%, 
+      #000000 56%, 
+      rgba(0, 0, 0, 0.90) 70%, 
+      transparent 90%) !important;
   }
 }
 
