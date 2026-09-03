@@ -1648,6 +1648,7 @@ html {
 
 
 /* UKRYCIE WSZELKICH SZTYWNYCH STRZAŁEK Z SZABLONÓW - ZOSTAJE TYLKO JEDNA INTELIGENTNA STRZAŁKA GLOBALNA */
+.p-hero-arrow-down,
 .distArrow,
 .distArrowUp,
 .stopkaArrowUp,
