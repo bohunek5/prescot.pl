@@ -220,11 +220,16 @@
 
 /* --- SECTION: DLACZEGO WARTO --- */
 .dist-why-section {
-  padding: 100px 24px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 8vh, 120px) 24px;
   background: #ffffff;
   color: var(--p-dark-soft);
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .dist-why-container {
@@ -319,12 +324,17 @@
 
 /* --- SECTION: FORMULARZ ZOSTAŃ DYSTRYBUTOREM --- */
 .dist-form-section {
-  padding: 100px 24px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(60px, 8vh, 120px) 24px;
   background: #f4f7fb;
   border-top: 1px solid var(--p-gray-border);
   border-bottom: 1px solid var(--p-gray-border);
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .dist-form-container {

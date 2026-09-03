@@ -1511,15 +1511,16 @@ a[href="#masthead"],
 
 
 
+
 /* =========================================================
-   PRESCOT PURE SCROLL-DOWN ARROWS (PULSUJĄCA, DUŻA, WIDOCZNA)
+   PRESCOT PURE SCROLL-DOWN ARROWS (CIUT MNIEJSZA, PŁYNNA, DYNAMICZNA)
    ========================================================= */
 .prescot-scroll-down,
 .p-hero-arrow-down {
   position: fixed !important;
-  bottom: 96px !important;
+  bottom: 90px !important;
   left: 50% !important;
-  margin-left: -22px !important;
+  margin-left: -16px !important;
   z-index: 999 !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -1530,41 +1531,42 @@ a[href="#masthead"],
   border: none !important;
   outline: none !important;
   padding: 0 !important;
-  transition: opacity 0.3s ease !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
 }
 
 /* Produkcja hero container positioning */
 .p-hero-arrow-down {
   position: absolute !important;
-  bottom: 96px !important;
+  bottom: 90px !important;
 }
 
 .prescot-scroll-down.psd-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
+  transform: translateY(12px) !important;
 }
 
-/* ROZMIAR STRZAŁKI: BOLD, 44px x 48px + ANIMACJA PULSOWANIA I LEWITACJI */
+/* ROZMIAR STRZAŁKI: CIUT MNIEJSZA, ELEGANCKA 32px x 36px */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
-  width: 44px !important;
-  height: 48px !important;
+  width: 32px !important;
+  height: 36px !important;
   display: block !important;
-  animation: pArrowPulseLevitate 2.2s ease-in-out infinite !important;
+  animation: pArrowPulseLevitate 2.4s ease-in-out infinite !important;
   transition: fill 0.25s ease, filter 0.25s ease !important;
 }
 
-/* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) Z MOCNYM BLASKIEM */
+/* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
   fill: #ffffff !important;
   color: #ffffff !important;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.5)) !important;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.45)) !important;
 }
 
-/* 2. NA JASNYCH / BIAŁYCH POLACH (OFERTA, PRODUKTY): GRANATOWA FIRMOWA (#19222e) */
+/* 2. NA JASNYCH / BIAŁYCH POLACH (OFERTA, PRODUKTY, BIAŁE BLOKI): GRANATOWA FIRMOWA (#19222e) */
 .prescot-scroll-down.is-light svg,
 .p-hero-arrow-down.is-light svg,
 body.page-oferta .prescot-scroll-down svg,
@@ -1572,7 +1574,7 @@ body.page-produkty .prescot-scroll-down svg,
 body:has(.dm-card-slider) .prescot-scroll-down svg {
   fill: #19222e !important;
   color: #19222e !important;
-  filter: drop-shadow(0 3px 8px rgba(25, 34, 46, 0.35)) !important;
+  filter: drop-shadow(0 2px 6px rgba(25, 34, 46, 0.28)) !important;
 }
 
 .prescot-scroll-down:hover svg,
@@ -1584,50 +1586,57 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
 @keyframes pArrowPulseLevitate {
   0% {
     transform: translateY(0px) scale(1);
-    opacity: 0.88;
+    opacity: 0.9;
   }
   50% {
-    transform: translateY(16px) scale(1.1);
+    transform: translateY(12px) scale(1.08);
     opacity: 1;
   }
   100% {
     transform: translateY(0px) scale(1);
-    opacity: 0.88;
+    opacity: 0.9;
   }
 }
 
 @media (max-width: 767px) {
   .prescot-scroll-down,
   .p-hero-arrow-down {
-    bottom: 84px !important;
-    margin-left: -17px !important;
+    bottom: 78px !important;
+    margin-left: -13px !important;
   }
   .prescot-scroll-down svg,
   .p-hero-arrow-down svg,
   svg.p-pure-arrow-down {
-    width: 34px !important;
-    height: 38px !important;
+    width: 26px !important;
+    height: 30px !important;
   }
   @keyframes pArrowPulseLevitate {
     0% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(12px) scale(1.08); }
+    50% { transform: translateY(10px) scale(1.06); }
     100% { transform: translateY(0px) scale(1); }
   }
 }
 
-/* SILPRO - POPRAWKA SZEROKOŚCI BIAŁYCH NAPISÓW NA PC */
-@media (min-width: 1025px) {
-  .elementor-22366 .elementor-element.elementor-element-11136000,
-  .elementor-element-11136000,
-  .elementor-element-11136000 .elementor-widget-container,
-  .elementor-element-11136000 p,
-  .elementor-element-09450ea,
-  .elementor-element-09450ea p {
-    width: 100% !important;
-    max-width: 520px !important;
-    font-size: 15.5px !important;
-    line-height: 1.65 !important;
-    letter-spacing: 0.15px !important;
-    color: #ffffff !important;
-  }
+/* =========================================================
+   APP-LIKE SECTION SCROLL SNAP (DOCIĄGANIE BLOKÓW STRONY)
+   ========================================================= */
+html {
+  scroll-behavior: smooth !important;
+  scroll-snap-type: y proximity;
+}
+
+.dist-hero-section,
+.dist-why-section,
+.dist-form-section,
+.distSlide,
+.p-full-hero,
+.hero-section,
+#dlaczego-warto,
+#zostan-dystrybutorem,
+#sprawdz-nasza-oferte,
+#kreci,
+#prawdziwe-mozliwosci,
+[data-element_type="container"].e-parent {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
