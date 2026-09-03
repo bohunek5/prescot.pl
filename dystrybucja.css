@@ -855,3 +855,45 @@
 .distSlide.is-elba .floatItem {
   filter: drop-shadow(0 16px 36px rgba(0, 45, 95, 0.18)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08)) !important;
 }
+
+
+/* PRESCOT DYSTRYBUCJA: ZMIANA GRANATU NA POMARAŃCZ & LOGO W KARTACH */
+.distSlide.is-prescot .distBtn {
+  background: #e14e26 !important;
+  border-color: #e14e26 !important;
+  color: #ffffff !important;
+}
+
+.distSlide.is-prescot .distBtn span {
+  background: #ffffff !important;
+  color: #e14e26 !important;
+}
+
+.distSlide.is-prescot .distBtn:hover {
+  background: transparent !important;
+  border-color: #e14e26 !important;
+  color: #e14e26 !important;
+}
+
+.distSlide.is-prescot .distBtn:hover span {
+  background: #e14e26 !important;
+  color: #ffffff !important;
+}
+
+.distSlide.is-prescot .distArrow,
+.distSlide.is-prescot .distArrowUp {
+  background: #e14e26 !important;
+  color: #ffffff !important;
+}
+
+.distSlide.is-prescot .distKicker {
+  color: #e14e26 !important;
+}
+
+.distSlide.is-prescot .distCard img {
+  max-height: 80px !important;
+  max-width: 82% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+}

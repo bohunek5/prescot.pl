@@ -290,11 +290,11 @@
 }
 
 /* BRAND COLORS - zostawione tylko dla przycisków i strzałek */
-.distSlide.is-prescot .distBtn { background: #212a35; color: #fff; }
-.distSlide.is-prescot .distBtn span { background: #fff; color: #212a35; }
-.distSlide.is-prescot .distBtn:hover { background: transparent; border-color: #212a35; color: #212a35; }
-.distSlide.is-prescot .distBtn:hover span { background: #212a35; color: #fff; }
-.distSlide.is-prescot .distArrow, .distSlide.is-prescot .distArrowUp { background: #212a35; color: #ffffff; }
+.distSlide.is-prescot .distBtn { background: #e14e26; color: #fff; border-color: #e14e26; }
+.distSlide.is-prescot .distBtn span { background: #fff; color: #e14e26; }
+.distSlide.is-prescot .distBtn:hover { background: transparent; border-color: #e14e26; color: #e14e26; }
+.distSlide.is-prescot .distBtn:hover span { background: #e14e26; color: #fff; }
+.distSlide.is-prescot .distArrow, .distSlide.is-prescot .distArrowUp { background: #e14e26; color: #ffffff; }
 
 .distSlide.is-klus .distBtn { background: #e10613; color: #fff; }
 .distSlide.is-klus .distBtn span { background: #fff; color: #e10613; }
@@ -385,6 +385,7 @@
 
 .distCard img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+.distSlide.is-prescot .distCard img,
 .distSlide.is-klus .distCard img,
 .distSlide.is-scharfer .distCard img,
 .distSlide.is-elba .distCard img,
@@ -502,7 +503,7 @@
       <a class="distBtn" href="/tasmy-led/">Poznaj ofertę PRESCOT <span>→</span></a>
     </div>
     <div class="distCard">
-      <img data-lazyloaded="1" src="data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" decoding="async" data-src="/wp-content/uploads/2026/01/FirmaPRESCOTLED.webp" alt="Producent oświetlenia Prescot LED"><noscript><img decoding="async" src="/wp-content/uploads/2026/01/FirmaPRESCOTLED.webp" alt="Producent oświetlenia Prescot LED"></noscript>
+      <img src="/wp-content/uploads/2025/12/PRESCOT_logo-podstawowe.svg" alt="Prescot LED - Polski Producent" loading="lazy" decoding="async"><noscript><img src="/wp-content/uploads/2025/12/PRESCOT_logo-podstawowe.svg" alt="Prescot LED - Polski Producent" loading="lazy" decoding="async"></noscript>
     </div>
   </div>
   
@@ -688,8 +689,8 @@ window.addEventListener("load", () => {
         targetMinPx = 200;
         targetMaxPx = 340;
       } else if (isElba) {
-        targetMinPx = 220;
-        targetMaxPx = 360;
+        targetMinPx = 110;
+        targetMaxPx = 180;
       } else if (isMiboxer) {
         targetMinPx = 140;
         targetMaxPx = 240;
@@ -708,8 +709,8 @@ window.addEventListener("load", () => {
         targetMinPx = 340;
         targetMaxPx = 620;
       } else if (isElba) {
-        targetMinPx = 400;
-        targetMaxPx = 680;
+        targetMinPx = 200;
+        targetMaxPx = 340;
       } else if (isMiboxer) {
         targetMinPx = 180;
         targetMaxPx = 300;
