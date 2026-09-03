@@ -1692,11 +1692,11 @@ body.has-card-slider #prescotScrollDown {
   inset: 0 !important;
   background: linear-gradient(90deg, 
     #000000 0%, 
-    #000000 55%, 
-    rgba(0, 0, 0, 0.96) 63%, 
-    rgba(0, 0, 0, 0.76) 74%, 
-    rgba(0, 0, 0, 0.30) 84%, 
-    transparent 92%) !important;
+    #000000 52%, 
+    rgba(0, 0, 0, 0.98) 60%, 
+    rgba(0, 0, 0, 0.80) 70%, 
+    rgba(0, 0, 0, 0.25) 82%, 
+    transparent 94%) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
@@ -1751,12 +1751,32 @@ body.has-card-slider #prescotScrollDown {
 
 @media (max-width: 991px) {
   .elementor-element-41e0875b::before {
-    background: linear-gradient(180deg, 
-      #000000 0%, 
-      #000000 56%, 
-      rgba(0, 0, 0, 0.90) 70%, 
-      transparent 90%) !important;
-  }
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(90deg, 
+    #000000 0%, 
+    #000000 52%, 
+    rgba(0, 0, 0, 0.98) 60%, 
+    rgba(0, 0, 0, 0.80) 70%, 
+    rgba(0, 0, 0, 0.25) 82%, 
+    transparent 94%) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+}
+
+
+.as-changing-widget[data-id=2531bbe9] a.elementor-button,
+.elementor-element-2531bbe9 a.elementor-button {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  padding: 16px 40px !important;
+  background: #e55933 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 8px 26px rgba(229, 89, 51, 0.6) !important;
+  transition: all 0.25s ease !important;
 }
 
 /* =========================================================
