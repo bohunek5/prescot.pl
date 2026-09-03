@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2b. Utworzenie inteligentnej strzałki w dół (Scroll-Down) nad dockiem
   let scrollDownBtn = document.getElementById("prescotScrollDown");
 
-  // Pomocnicza funkcja: pobiera wyłącznie główne, nienadrzędne bloki/sekcje strony
+  // Pomocnicza funkcja: pobiera wyłącznie nienadrzędne, widoczne bloki strony
   function getTopLevelSections() {
     const candidates = document.querySelectorAll(
       ".e-parent, section, .distSlide, .dist-why-section, .dist-form-section, #stopka, #kreci, #prawdziwe-mozliwosci, .distribution-intro, .site-footer, [id^='sec']"
@@ -87,6 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const topSections = [];
     
     candidates.forEach(el => {
+      // Pomiń elementy o zerowej wysokości lub ukryte w stylach
+      if (el.offsetHeight < 60) return;
+      const disp = window.getComputedStyle(el).display;
+      if (disp === "none") return;
+
       let isNested = false;
       let p = el.parentElement;
       while (p && p !== document.body) {
@@ -96,11 +101,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         p = p.parentElement;
       }
-      if (!isNested && el.offsetHeight > 80) {
+      if (!isNested) {
         topSections.push(el);
       }
     });
     return topSections;
+  }
+
+  // Pomocnicza funkcja do dynamicznego wykrywania jasności tła pod strzałką
+  function updateArrowColor(btn, currentScrollY) {
+    if (!btn) return;
+    const pPath = window.location.pathname.toLowerCase();
+    let isLightBg = false;
+
+    if (pPath.includes("oferta") || pPath.includes("produkty")) {
+      isLightBg = true;
+    } else if (pPath.includes("dystrybucja")) {
+      const heroEl = document.querySelector(".distribution-intro, .dist-hero-section");
+      const heroH = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight) : 550;
+      if (currentScrollY > heroH - 220) {
+        isLightBg = true;
+      }
+    } else {
+      const testX = window.innerWidth / 2;
+      const testY = window.innerHeight - 80;
+      const elUnder = document.elementFromPoint(testX, testY);
+      if (elUnder) {
+        const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .distWrap, .distSlide, .distGrid, .distCard, #dystrybucja-marki, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
+        if (lightParent) {
+          isLightBg = true;
+        } else {
+          let cur = elUnder;
+          while (cur && cur !== document.body) {
+            const bg = window.getComputedStyle(cur).backgroundColor;
+            const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+            if (rgb && !bg.includes("rgba(0, 0, 0, 0)") && !bg.includes("transparent")) {
+              const lum = (parseInt(rgb[1]) * 299 + parseInt(rgb[2]) * 587 + parseInt(rgb[3]) * 114) / 1000;
+              if (lum > 170) isLightBg = true;
+              break;
+            }
+            cur = cur.parentElement;
+          }
+        }
+      }
+    }
+
+    if (isLightBg) {
+      btn.classList.add("is-light");
+    } else {
+      btn.classList.remove("is-light");
+    }
   }
 
   function checkScrollDown() {
@@ -155,8 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let nextSec = null;
         for (const sec of topSections) {
           const rect = sec.getBoundingClientRect();
-          // Szukamy sekcji, której górna krawędź zaczyna się poniżej linii wzroku (+60px)
-          if (rect.top > 60) {
+          // Szukamy sekcji, której górna krawędź zaczyna się poniżej obecnego ekranu
+          if (rect.top > 80) {
             nextSec = sec;
             break;
           }
@@ -209,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const winH = window.innerHeight || 700;
       const scrollBottom = docTotalH - (currentScrollY + winH);
 
-      // 1. Formularz kontaktowy lub sam dół strony (stopka) -> ZAWSZE UKRYTE
+      // 1. Zabezpieczenie: formularz kontaktowy lub sam koniec strony -> ZAWSZE UKRYTE
       const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form, .contactForm");
       let isInsideForm = false;
       if (formEl) {
@@ -218,109 +268,73 @@ document.addEventListener("DOMContentLoaded", () => {
           isInsideForm = true;
         }
       }
-      const isAtVeryEndOfPage = scrollBottom < 80;
+      const isAtVeryEndOfPage = scrollBottom < 60;
 
       if (isInsideForm || isAtVeryEndOfPage) {
         scrollDownBtn.classList.add("psd-hidden");
         return;
       }
 
-      // 2. Startowo na Hero: pozycja bez zmian (WIDOCZNA)
-      const isAtHero = currentScrollY <= heroThreshold;
+      // 2. Startowo na Hero: gdy użytkownik jest na samej górze strony -> ZAWSZE WIDOCZNA
+      if (currentScrollY <= 100) {
+        scrollDownBtn.classList.remove("psd-hidden");
+        updateArrowColor(scrollDownBtn, currentScrollY);
+        return;
+      }
 
-      let shouldShowArrow = false;
+      // 3. Sprawdzamy w którym dokładnie bloku znajduje się użytkownik:
+      const topSections = getTopLevelSections();
+      const vCenter = winH * 0.5;
 
-      if (isAtHero) {
-        shouldShowArrow = true;
-      } else {
-        // 3. Sprawdzamy każdy kolejny blok / sekcję:
-        // Strzałka pojawia się, gdy użytkownik znajduje się na ~75-80% aktualnie oglądanego bloku:
-        const topSections = getTopLevelSections();
-        for (let i = 0; i < topSections.length; i++) {
-          const sec = topSections[i];
-          // Jeśli to ostatnia sekcja na stronie (np. stopka) -> brak strzałki w dół
-          if (i === topSections.length - 1) continue;
-
-          const rect = sec.getBoundingClientRect();
-          const secH = sec.offsetHeight;
-
-          // Czy sekcja jest aktualnie widoczna na ekranie?
-          if (rect.top < winH * 0.7 && rect.bottom > 80) {
-            // Sprawdź czy to pełnoekranowy slajd (100vh) w Dystrybucji
-            const isFullScreen = Math.abs(secH - winH) < 140 || sec.classList.contains("distSlide");
-            if (isFullScreen) {
-              if (rect.top >= -80 && rect.bottom <= winH + 80) {
-                shouldShowArrow = true;
-                break;
-              }
-            } else {
-              // Dla dłuższych bloków:
-              // Strzałka pojawia się na ~75-80% bloku (gdy dół bloku jest w odległości <= 380px od dołu okna)
-              const remainingBelow = rect.bottom - winH;
-              if (remainingBelow <= 380 && rect.bottom >= 80) {
-                shouldShowArrow = true;
-                break;
-              }
-            }
-          }
+      let activeIndex = -1;
+      for (let i = 0; i < topSections.length; i++) {
+        const r = topSections[i].getBoundingClientRect();
+        if (r.top <= vCenter && r.bottom >= vCenter) {
+          activeIndex = i;
+          break;
         }
       }
 
-      if (shouldShowArrow) {
+      // Jeśli użytkownik jest poza blokami lub w ostatnim bloku (np. stopka) -> UKRYJ
+      if (activeIndex === -1 || activeIndex === topSections.length - 1) {
+        scrollDownBtn.classList.add("psd-hidden");
+        return;
+      }
+
+      const activeSec = topSections[activeIndex];
+      const aRect = activeSec.getBoundingClientRect();
+      const aHeight = activeSec.offsetHeight;
+
+      let shouldShow = false;
+
+      // Sprawdź czy to pełnoekranowy slajd (100vh jak w Dystrybucji):
+      const isFullScreenSlide = Math.abs(aHeight - winH) < 140 || activeSec.classList.contains("distSlide");
+      if (isFullScreenSlide) {
+        if (Math.abs(aRect.top) <= winH * 0.35) {
+          shouldShow = true;
+        }
+      } else {
+        // Dla długich bloków (treść, opisy, maszyny, tabele):
+        // Obliczamy dokładny postęp przewijania TEGO KONKRETNEGO bloku od 0.0 do 1.0:
+        const maxScroll = Math.max(1, aHeight - winH);
+        const currentInSec = -aRect.top;
+        const progress = currentInSec / maxScroll;
+
+        // REGUŁA KAROLA:
+        // - W środku bloku (0% - 74%): STRZAŁKI MA NIE BYĆ!
+        // - Na ~80% bloku (75% - 100%): STRZAŁKA MA BYĆ!
+        if (progress >= 0.75 && progress <= 1.15) {
+          shouldShow = true;
+        } else {
+          shouldShow = false;
+        }
+      }
+
+      if (shouldShow) {
         scrollDownBtn.classList.remove("psd-hidden");
+        updateArrowColor(scrollDownBtn, currentScrollY);
       } else {
         scrollDownBtn.classList.add("psd-hidden");
-      }
-
-      // Dynamiczne wykrywanie jasnego tła pod strzałką:
-      const pPath = window.location.pathname.toLowerCase();
-      let isLightBg = false;
-
-      // 1. Strony całkowicie jasne (Oferta, Produkty)
-      if (pPath.includes("oferta") || pPath.includes("produkty")) {
-        isLightBg = true;
-      }
-
-      // 2. Dystrybucja: Hero jest ciemne (budynek), a CAŁA RESZTA PONIŻEJ HERO jest BIAŁA (#ffffff)!
-      if (pPath.includes("dystrybucja")) {
-        const heroEl = document.querySelector(".distribution-intro, .dist-hero-section");
-        const heroH = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight) : 550;
-        if (currentScrollY > heroH - 220) {
-          isLightBg = true;
-        } else {
-          isLightBg = false;
-        }
-      }
-
-      // 3. Sprawdź element fizycznie znajdujący się pod strzałką
-      if (!isLightBg) {
-        const testX = window.innerWidth / 2;
-        const testY = window.innerHeight - 80;
-        const elUnder = document.elementFromPoint(testX, testY);
-        if (elUnder) {
-          const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .distWrap, .distSlide, .distGrid, .distCard, #dystrybucja-marki, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
-          if (lightParent) {
-            isLightBg = true;
-          } else {
-            let cur = elUnder;
-            while (cur && cur !== document.body) {
-              const bg = window.getComputedStyle(cur).backgroundColor;
-              const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
-              if (rgb && !bg.includes("rgba(0, 0, 0, 0)") && !bg.includes("transparent")) {
-                const lum = (parseInt(rgb[1]) * 299 + parseInt(rgb[2]) * 587 + parseInt(rgb[3]) * 114) / 1000;
-                if (lum > 170) isLightBg = true;
-                break;
-              }
-              cur = cur.parentElement;
-            }
-          }
-        }
-      }
-
-      if (isLightBg) {
-        scrollDownBtn.classList.add("is-light");
-      } else {
-        scrollDownBtn.classList.remove("is-light");
       }
     }
 
@@ -380,3 +394,66 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(gtScript);
   }
 });
+
+
+  // 0b. Native Modern B2C Interstitial Modal (Modern Web Guidance <dialog>)
+  function setupB2CModal() {
+    let dialog = document.getElementById("prescotB2CDialog");
+    if (!dialog) {
+      dialog = document.createElement("dialog");
+      dialog.id = "prescotB2CDialog";
+      dialog.className = "prescot-b2c-dialog";
+      
+      const isGH = window.location.pathname.startsWith("/prescotpl");
+      const bgImgUrl = isGH 
+        ? "/prescotpl/wp-content/uploads/2026/03/prescot-shop-bg.webp" 
+        : "/wp-content/uploads/2026/03/prescot-shop-bg.webp";
+
+      dialog.innerHTML = `
+        <div class="b2c-dialog-box" style="background-image: linear-gradient(180deg, rgba(8, 12, 22, 0.82) 0%, rgba(8, 12, 22, 0.96) 100%), url('${bgImgUrl}') !important;">
+          <button type="button" class="b2c-dialog-close" id="b2cCloseCross" aria-label="Zamknij">&times;</button>
+          
+          <div class="b2c-dialog-badge">SKLEP INTERNETOWY B2C</div>
+          
+          <h3 class="b2c-dialog-title">Przechodzisz na sklep<br><span style="color:#ff6b3d; text-shadow:0 0 20px rgba(255,107,61,0.4);">prescot.com.pl</span></h3>
+          
+          <p class="b2c-main-desc">Oficjalny sklep dla klientów detalicznych i szybkich zakupów online.</p>
+
+          <div class="b2c-dialog-actions">
+            <a href="https://prescot.com.pl/" id="b2cConfirmBtn" target="_blank" rel="noopener" class="b2c-btn-confirm">
+              Przejdź do sklepu prescot.com.pl &rarr;
+            </a>
+            <button type="button" class="b2c-btn-cancel" id="b2cCancelBtn">
+              Zostań na tej stronie
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(dialog);
+
+      // Event listeners for closing
+      dialog.querySelector("#b2cCloseCross").addEventListener("click", () => dialog.close());
+      dialog.querySelector("#b2cCancelBtn").addEventListener("click", () => dialog.close());
+      dialog.querySelector("#b2cConfirmBtn").addEventListener("click", () => dialog.close());
+      
+      // Close on backdrop click
+      dialog.addEventListener("click", (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height
+          && rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+        if (!isInDialog) {
+          dialog.close();
+        }
+      });
+    }
+
+    // Bind to all B2C Cart links in dock and page
+    document.querySelectorAll('a[href*="prescot.com.pl"], .dock-b2c-btn, [data-tooltip="Sklep B2C"]').forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        dialog.showModal();
+      });
+    });
+  }
+  setupB2CModal();
+  setTimeout(setupB2CModal, 600);
