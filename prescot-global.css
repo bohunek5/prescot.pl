@@ -1507,13 +1507,14 @@ a[href="#masthead"],
   pointer-events: auto !important;
 }
 /* =========================================================
+
 /* =========================================================
-   PRESCOT PURE SCROLL-DOWN ARROWS (DOKŁADNIE JAK POD TAŚMAMI)
+   PRESCOT PURE SCROLL-DOWN ARROWS (DUŻA, SOLIDNA, WIDOCZNA)
    ========================================================= */
 .prescot-scroll-down,
 .p-hero-arrow-down {
   position: fixed !important;
-  bottom: 84px !important;
+  bottom: 96px !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   z-index: 999 !important;
@@ -1533,59 +1534,66 @@ a[href="#masthead"],
 /* Produkcja hero container positioning */
 .p-hero-arrow-down {
   position: absolute !important;
-  bottom: 84px !important;
+  bottom: 96px !important;
 }
 
 .prescot-scroll-down.psd-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
-  transform: translateX(-50%) translateY(14px) !important;
+  transform: translateX(-50%) translateY(16px) !important;
 }
 
-/* 1. Na czarnych / ciemnych polach: BIAŁA STRZAŁKA (#ffffff) */
+/* ROZMIAR STRZAŁKI: SOLIDNE 42px x 46px (DOKŁADNIE JAK ZE SCREENSHOTA Z TAŚM) */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
-  width: 26px !important;
-  height: 30px !important;
-  fill: #ffffff !important;
-  color: #ffffff !important;
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8)) !important;
-  transition: fill 0.2s ease, transform 0.2s ease !important;
+  width: 42px !important;
+  height: 46px !important;
+  display: block !important;
+  transition: fill 0.25s ease, transform 0.25s ease !important;
 }
 
-/* 2. Na jasnych polach: GRANATOWA FIRMOWA (#19222e) */
+/* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) */
+.prescot-scroll-down svg,
+.p-hero-arrow-down svg,
+svg.p-pure-arrow-down {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 14px rgba(255, 255, 255, 0.45)) !important;
+}
+
+/* 2. NA JASNYCH / BIAŁYCH POLACH (OFERTA, PRODUKTY): GRANATOWA FIRMOWA (#19222e) */
 .prescot-scroll-down.is-light svg,
 .p-hero-arrow-down.is-light svg,
-body.page-dystrybucja .prescot-scroll-down svg,
-body.page-kontakt .prescot-scroll-down svg,
-body.page-baza-wiedzy .prescot-scroll-down svg {
+body.page-oferta .prescot-scroll-down svg,
+body.page-produkty .prescot-scroll-down svg,
+body:has(.dm-card-slider) .prescot-scroll-down svg {
   fill: #19222e !important;
   color: #19222e !important;
-  filter: drop-shadow(0 2px 4px rgba(25, 34, 46, 0.25)) !important;
+  filter: drop-shadow(0 3px 8px rgba(25, 34, 46, 0.35)) !important;
 }
 
 .prescot-scroll-down:hover svg,
 .p-hero-arrow-down:hover svg {
   fill: #e14e26 !important;
-  transform: scale(1.15) translateY(3px) !important;
+  transform: scale(1.15) translateY(4px) !important;
 }
 
 @keyframes pArrowLewitacja {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  50% { transform: translateY(12px); }
 }
 
 @media (max-width: 767px) {
   .prescot-scroll-down,
   .p-hero-arrow-down {
-    bottom: 74px !important;
+    bottom: 84px !important;
   }
   .prescot-scroll-down svg,
   .p-hero-arrow-down svg,
   svg.p-pure-arrow-down {
-    width: 22px !important;
-    height: 26px !important;
+    width: 32px !important;
+    height: 36px !important;
   }
 }
 

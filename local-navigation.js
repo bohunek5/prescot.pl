@@ -78,11 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2b. Utworzenie inteligentnej strzałki w dół (Scroll-Down) nad dockiem
   let scrollDownBtn = document.getElementById("prescotScrollDown");
   function checkScrollDown() {
-    const docH = document.documentElement.scrollHeight || document.body.scrollHeight;
-    const winH = window.innerHeight || 800;
-    const hasMoreContent = docH > winH + 150;
+    if (document.getElementById("prescotScrollDown")) return;
 
-    if (hasMoreContent && !document.getElementById("prescotScrollDown")) {
+    // Sprawdź czy strona ma więcej treści lub slider/karty
+    const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    const winH = window.innerHeight || 700;
+    const hasCardsOrContent = document.querySelector(".dm-card-slider, .mdw-card-portfolio, [id^='card'], [id^='true'], #kreci, #dlaczego-warto, .dist-why-section, .elementor-top-section:nth-of-type(2)");
+    const hasMoreContent = docH > (winH + 30) || hasCardsOrContent !== null;
+
+    if (hasMoreContent) {
       scrollDownBtn = document.createElement("a");
       scrollDownBtn.id = "prescotScrollDown";
       scrollDownBtn.className = "prescot-scroll-down";
@@ -95,18 +99,19 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       document.body.appendChild(scrollDownBtn);
 
-      // Automatyczne wykrywanie jasnego tła dla strzałki granatowej firmowej (#19222e)
+      // Automatyczne wykrywanie jasnego tła:
+      // TYLKO strony o jasnym tle (oferta, produkty, jasne slidery) mają granatową firmową (#19222e)!
+      // Na ciemnych tłach (Dystrybucja z ciemnym budynkiem, Produkcja, Taśmy LED, Silpro, 160s, Kontakt) -> BIAŁA STRZAŁKA!
       const pName = window.location.pathname.toLowerCase();
-      const isLight = pName.includes("dystrybucja") || pName.includes("kontakt") || pName.includes("baza-wiedzy") || document.body.classList.contains("page-light");
+      const isLight = pName.includes("oferta") || pName.includes("produkty") || (document.querySelector(".dm-card-slider") !== null && !document.body.classList.contains("mdw-card-portfolio"));
       if (isLight) {
         scrollDownBtn.classList.add("is-light");
       }
 
-
       scrollDownBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const target = document.querySelector("#kreci, #dlaczego-warto, #sprawdz-nasza-oferte, #dystrybucja-marki, #content-start, .dist-why-section, [data-id='3e992196']");
-        if (target && window.scrollY < 250) {
+        const target = document.querySelector("#kreci, #dlaczego-warto, #sprawdz-nasza-oferte, #dystrybucja-marki, #true1, #true2, [id^='card2'], [id^='card-2'], [data-id='3e992196'], .dist-why-section");
+        if (target && window.scrollY < 300) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
           window.scrollBy({ top: Math.round(window.innerHeight * 0.85), behavior: "smooth" });
@@ -116,6 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   checkScrollDown();
   window.addEventListener("load", checkScrollDown);
+  setTimeout(checkScrollDown, 400);
+  setTimeout(checkScrollDown, 1200);
+
 
 
   // 3. Smart Scroll Controller
