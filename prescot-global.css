@@ -1659,3 +1659,13 @@ html {
   pointer-events: none !important;
   opacity: 0 !important;
 }
+
+/* Wyłączenie globalnej strzałki na stronach typu showcase (rozchodzące się karty lewo/prawo) oraz Oferta */
+body:has(.dm-card-slider) #prescotScrollDown,
+body:has(.mdw-card-portfolio) #prescotScrollDown,
+body:has([id^='card']) #prescotScrollDown,
+body.has-card-slider #prescotScrollDown {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

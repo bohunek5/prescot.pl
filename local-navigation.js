@@ -78,13 +78,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2b. Utworzenie inteligentnej strzałki w dół (Scroll-Down) nad dockiem
   let scrollDownBtn = document.getElementById("prescotScrollDown");
   function checkScrollDown() {
+    const pName = (window.location.pathname || "").toLowerCase();
+    
+    // Wykluczenie dla stron typu showcase (rozchodzące się slajdy lewo/prawo) oraz Oferta:
+    // Mają już własne oryginalne strzałki nawigacyjne – nie dublujemy ich!
+    const isShowcaseOrOferta = pName.includes("oferta") ||
+      pName.includes("produkty") ||
+      pName.includes("produkt") ||
+      document.querySelector(".dm-card-slider, .mdw-card-portfolio, .card-portfolio, [id^='card']") !== null ||
+      document.body.classList.contains("mdw-card-portfolio");
+
+    if (isShowcaseOrOferta) {
+      const existing = document.getElementById("prescotScrollDown");
+      if (existing) existing.remove();
+      scrollDownBtn = null;
+      return;
+    }
+
     if (document.getElementById("prescotScrollDown")) return;
 
-    // Sprawdź czy strona ma więcej treści lub slider/karty
+    // Sprawdź czy strona ma więcej treści (dla stron standardowych typu produkcja, dystrybucja, b2b, kontakt, owg)
     const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
     const winH = window.innerHeight || 700;
-    const hasCardsOrContent = document.querySelector(".dm-card-slider, .mdw-card-portfolio, [id^='card'], [id^='true'], #kreci, #dlaczego-warto, .dist-why-section, .elementor-top-section:nth-of-type(2)");
-    const hasMoreContent = docH > (winH + 30) || hasCardsOrContent !== null;
+    const hasMoreContent = docH > (winH + 30);
 
     if (hasMoreContent) {
       scrollDownBtn = document.createElement("a");
@@ -183,21 +199,65 @@ document.addEventListener("DOMContentLoaded", () => {
       const docTotalH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
       const scrollBottom = docTotalH - (currentScrollY + window.innerHeight);
       
-      // Ukryj strzałkę TYLKO jeśli użytkownik dojechał do samego dołu strony (stopka)
-      if (scrollBottom < 220) {
-        scrollDownBtn.classList.add("psd-hidden");
-      } else {
-        scrollDownBtn.classList.remove("psd-hidden");
-      }
+      const winH = window.innerHeight || 700;
 
-      // Jeśli użytkownik jest w sekcji formularza, ukryj strzałkę, aby pod żadnym pozorem nie wchodziła pod przycisk wysyłki!
-      const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form");
+      // 1. Formularz lub sam dół strony (stopka) -> ZAWSZE UKRYTE
+      const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form, .contactForm");
+      let isInsideForm = false;
       if (formEl) {
         const fRect = formEl.getBoundingClientRect();
-        if (fRect.top < window.innerHeight * 0.75 && fRect.bottom > window.innerHeight * 0.2) {
-          scrollDownBtn.classList.add("psd-hidden");
-          return;
+        if (fRect.top < winH * 0.75 && fRect.bottom > winH * 0.2) {
+          isInsideForm = true;
         }
+      }
+      const isAtVeryEndOfPage = scrollBottom < 120;
+
+      if (isInsideForm || isAtVeryEndOfPage) {
+        scrollDownBtn.classList.add("psd-hidden");
+        return;
+      }
+
+      // 2. Startowo na Hero: gdy wchodzimy na stronę / jesteśmy w sekcji Hero na podstronach -> pozycja bez zmian (WIDOCZNA)
+      const heroThreshold = Math.max(80, Math.min(180, heroHeight * 0.3));
+      const isAtHero = currentScrollY <= heroThreshold;
+
+      let shouldShowArrow = false;
+
+      if (isAtHero) {
+        shouldShowArrow = true;
+      } else {
+        // 3. Na środkach stron strzałki ma NIE być. Pojawia się dopiero, gdy dobijamy do dolnej krawędzi bloku / sekcji:
+        const majorSections = document.querySelectorAll(
+          "section, .distSlide, .dist-why-section, [id^='sl-'], #kreci, #prawdziwe-mozliwosci, [data-element_type='container'], .elementor-top-section"
+        );
+
+        for (const sec of majorSections) {
+          if (sec === heroEl || sec.offsetHeight < 160) continue;
+          const rect = sec.getBoundingClientRect();
+
+          // Sprawdź czy to pełnoekranowy slajd (100vh) w trybie prezentacji
+          const isFullScreenSlide = Math.abs(sec.offsetHeight - winH) < 140 || sec.classList.contains("distSlide");
+          if (isFullScreenSlide) {
+            if (rect.top >= -80 && rect.bottom <= winH + 80) {
+              shouldShowArrow = true;
+              break;
+            }
+          } else {
+            // Dla standardowych długich bloków (treść, opisy, maszyny, tabele):
+            // Dobijamy do dolnej krawędzi bloku, gdy dolna krawędź sekcji wchodzi w dół ekranu:
+            const distFromBottom = rect.bottom - winH;
+            if (distFromBottom >= -60 && distFromBottom <= 200) {
+              shouldShowArrow = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if (shouldShowArrow) {
+        scrollDownBtn.classList.remove("psd-hidden");
+      } else {
+        scrollDownBtn.classList.add("psd-hidden");
       }
 
       // Dynamiczne wykrywanie jasnego tła pod strzałką:
