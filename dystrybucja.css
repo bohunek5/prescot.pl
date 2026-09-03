@@ -287,12 +287,20 @@
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: rgba(223, 63, 25, 0.08);
-  color: var(--p-orange);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   display: grid;
   place-items: center;
-  font-size: 24px;
+  color: #19222e;
   margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.dist-why-card:hover .dist-why-icon-wrap {
+  background: #19222e;
+  color: #ffffff;
+  border-color: #19222e;
+  transform: translateY(-2px);
 }
 
 .dist-why-card-title {
@@ -401,25 +409,30 @@
 }
 
 .dist-submit-btn {
-  width: 100%;
-  background: var(--p-dark);
-  color: #ffffff;
-  border: none;
+  background: #19222e !important;
+  color: #ffffff !important;
   padding: 18px 36px;
   border-radius: 999px;
-  font-size: 15px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-size: 15px;
+  border: 2px solid #19222e !important;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(25, 34, 46, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  letter-spacing: 0.04em;
 }
 
 .dist-submit-btn:hover {
-  background: var(--p-orange);
+  background: #ffffff !important;
+  color: #19222e !important;
+  border-color: #19222e !important;
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(223, 63, 25, 0.35);
+  box-shadow: 0 10px 28px rgba(25, 34, 46, 0.22) !important;
 }
 
 .dist-form-success {
@@ -458,4 +471,124 @@
   background: #ffffff;
   position: relative;
   z-index: 2;
+}
+
+
+/* --- BRAND SELECTOR GRID IN FORM (ZAMIAST BRZYDKICH PTASZKÓW) --- */
+.dist-label-main {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #19222e;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dist-brand-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  width: 100%;
+}
+
+.dist-brand-card {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dist-brand-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dist-brand-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+  position: relative;
+  min-height: 96px;
+  text-align: center;
+}
+
+.dist-brand-card:hover .dist-brand-card-inner {
+  border-color: #19222e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(25, 34, 46, 0.08);
+}
+
+.dist-brand-card input:checked + .dist-brand-card-inner {
+  border-color: #19222e;
+  background: #f8fafc;
+  box-shadow: 0 4px 16px rgba(25, 34, 46, 0.12);
+}
+
+.dist-brand-card-logo-wrap {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.dist-brand-card-logo {
+  max-height: 28px;
+  max-width: 90%;
+  width: auto;
+  object-fit: contain;
+}
+
+.dist-brand-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #19222e;
+  line-height: 1.2;
+}
+
+.dist-brand-card-check {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+  color: transparent;
+}
+
+.dist-brand-card-check svg {
+  width: 13px;
+  height: 13px;
+}
+
+.dist-brand-card input:checked + .dist-brand-card-inner .dist-brand-card-check {
+  background: #19222e;
+  border-color: #19222e;
+  color: #ffffff;
+}
+
+@media (max-width: 991px) {
+  .dist-brand-selector-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dist-brand-selector-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

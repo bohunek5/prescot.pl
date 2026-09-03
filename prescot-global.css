@@ -858,7 +858,8 @@ dialog#b2b-register-modal[open]::backdrop {
 .p-btn-white-surface:hover,
 .submitBtn:hover,
 .b2b-submit-btn:hover,
-.contact-submit-btn:hover {
+.contact-submit-btn:hover,
+.dist-submit-btn:hover {
   transform: translateY(-2px) !important;
   background: #ffffff !important;
   color: #212a35 !important;

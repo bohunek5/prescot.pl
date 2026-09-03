@@ -180,10 +180,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (scrollDownBtn) {
-      if (currentScrollY > 100) {
+      const docTotalH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      const scrollBottom = docTotalH - (currentScrollY + window.innerHeight);
+      
+      // Ukryj strzałkę TYLKO jeśli użytkownik dojechał do samego dołu strony (stopka)
+      if (scrollBottom < 220) {
         scrollDownBtn.classList.add("psd-hidden");
       } else {
         scrollDownBtn.classList.remove("psd-hidden");
+      }
+
+      // Dynamiczne wykrywanie jasnego tła pod strzałką:
+      // Wykryj element znajdujący się na dole ekranu (w pozycji strzałki)
+      const testX = window.innerWidth / 2;
+      const testY = window.innerHeight - 80;
+      const elUnder = document.elementFromPoint(testX, testY);
+
+      let isLightBg = false;
+      if (elUnder) {
+        const lightParent = elUnder.closest(".dist-why-section, .dist-form-section, .dm-card-slider, .distContentBox, [style*='background:#ffffff'], [style*='background: #ffffff'], .site-footer");
+        if (lightParent) {
+          isLightBg = true;
+        } else {
+          // Oblicz jasność tła elementu
+          const bg = window.getComputedStyle(elUnder).backgroundColor;
+          const rgb = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          if (rgb) {
+            const lum = (parseInt(rgb[1]) * 299 + parseInt(rgb[2]) * 587 + parseInt(rgb[3]) * 114) / 1000;
+            if (lum > 175) isLightBg = true;
+          }
+        }
+      }
+
+      const pPath = window.location.pathname.toLowerCase();
+      if (isLightBg || pPath.includes("oferta") || pPath.includes("produkty")) {
+        scrollDownBtn.classList.add("is-light");
+      } else {
+        scrollDownBtn.classList.remove("is-light");
       }
     }
 
