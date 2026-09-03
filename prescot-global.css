@@ -22,6 +22,10 @@ html body h1,
 html body h2,
 html body h3,
 html body h4,
+html body h1,
+html body h2,
+html body h3,
+html body h4,
 html body h5,
 html body h6,
 html body .elementor-heading-title,
@@ -29,6 +33,7 @@ html body .distTitle,
 html body .distKicker {
   font-family: var(--prescot-font-heading) !important;
 }
+
 
 /* =========================================================
    PRESCOT LUXURY WHITE DOCK MENU (EXACT MATCH SS2)
@@ -155,14 +160,17 @@ html body .distKicker {
     height: 48px !important;
     max-width: calc(100vw - 20px) !important;
   }
+
   .prescot-dock .dock-item {
     width: 32px !important;
     height: 32px !important;
   }
+
   .prescot-dock .dock-item svg {
     width: 18px !important;
     height: 18px !important;
   }
+
   .prescot-dock .dock-item::after {
     display: none !important;
   }
@@ -334,6 +342,7 @@ dialog#b2b-register-modal[open] {
 }
 
 @starting-style {
+
   dialog#b2b-modal[open],
   dialog#b2b-register-modal[open] {
     opacity: 0;
@@ -358,6 +367,7 @@ dialog#b2b-register-modal[open]::backdrop {
 }
 
 @starting-style {
+
   dialog#b2b-modal[open]::backdrop,
   dialog#b2b-register-modal[open]::backdrop {
     background-color: rgba(15, 23, 42, 0);
@@ -715,7 +725,8 @@ dialog#b2b-register-modal[open]::backdrop {
 }
 
 #gt_float_wrapper .gt-selected img {
-  border-radius: 50% !important; /* Optionally round the flag itself */
+  border-radius: 50% !important;
+  /* Optionally round the flag itself */
   object-fit: cover !important;
 }
 
@@ -746,7 +757,7 @@ dialog#b2b-register-modal[open]::backdrop {
   height: 48px !important;
   width: auto !important;
   display: block !important;
-  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.6)) !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6)) !important;
   transition: transform 0.2s ease !important;
 }
 
@@ -897,11 +908,13 @@ dialog#b2b-register-modal[open]::backdrop {
   letter-spacing: 0.6px !important;
   text-transform: uppercase !important;
 }
+
 .p-hero-arrow-down:hover {
   opacity: 1 !important;
   color: #ff8a65 !important;
   transform: translateX(-50%) translateY(2px) !important;
 }
+
 .p-arrow-icon {
   width: 36px !important;
   height: 36px !important;
@@ -915,10 +928,24 @@ dialog#b2b-register-modal[open]::backdrop {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
   animation: pBounce 2.2s infinite ease-in-out !important;
 }
+
 @keyframes pBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-8px);
+  }
+
+  60% {
+    transform: translateY(-4px);
+  }
 }
 
 @media (max-width: 767px) {
@@ -1015,7 +1042,8 @@ body:has(.mdw-gradient) .mdw-card-portfolio,
   visibility: visible !important;
 }
 
-#stopka.white-footer, footer.white-footer {
+#stopka.white-footer,
+footer.white-footer {
   background-color: #ffffff !important;
 }
 
@@ -1042,18 +1070,22 @@ body:has(.mdw-gradient) .mdw-card-portfolio,
   letter-spacing: 0.6px !important;
   text-transform: uppercase !important;
 }
+
 .p-hero-arrow-down span {
   color: #ffffff !important;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.6) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
 }
+
 .p-hero-arrow-down:hover {
   opacity: 1 !important;
   color: #ff8a65 !important;
   transform: translateX(-50%) translateY(2px) !important;
 }
+
 .p-hero-arrow-down:hover span {
   color: #ff8a65 !important;
 }
+
 .p-arrow-icon {
   width: 38px !important;
   height: 38px !important;
@@ -1069,14 +1101,29 @@ body:has(.mdw-gradient) .mdw-card-portfolio,
   animation: pBounce 2.2s infinite ease-in-out !important;
   color: #ffffff !important;
 }
+
 .p-arrow-icon svg {
   stroke: #ffffff !important;
   color: #ffffff !important;
 }
+
 @keyframes pBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-8px);
+  }
+
+  60% {
+    transform: translateY(-4px);
+  }
 }
 
 @media (max-width: 767px) {
@@ -1446,23 +1493,16 @@ a[href="#masthead"],
   pointer-events: none !important;
 }
 
-/* Ensure headings and hero text are always visible even if waypoints lag */
-.elementor-invisible:not(.as-changing-widget .elementor-widget) {
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
 /* Bulletproof slider text isolation: only the active slide widget is visible */
 .as-changing-widget .elementor-widget:not(.currentUp):not(.currentDown) {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
 .as-changing-widget .elementor-widget.currentUp,
 .as-changing-widget .elementor-widget.currentDown {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
 }
-
-
