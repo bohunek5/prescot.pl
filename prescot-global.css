@@ -1508,6 +1508,7 @@ a[href="#masthead"],
 }
 /* =========================================================
 
+
 /* =========================================================
    PRESCOT PURE SCROLL-DOWN ARROWS (DUŻA, SOLIDNA, WIDOCZNA)
    ========================================================= */
@@ -1527,8 +1528,8 @@ a[href="#masthead"],
   border: none !important;
   outline: none !important;
   padding: 6px !important;
-  animation: pArrowLewitacja 2.5s ease-in-out infinite !important;
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  animation: prescotArrowLevitate 2.8s ease-in-out infinite !important;
+  transition: opacity 0.3s ease !important;
 }
 
 /* Produkcja hero container positioning */
@@ -1540,17 +1541,17 @@ a[href="#masthead"],
 .prescot-scroll-down.psd-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
-  transform: translateX(-50%) translateY(16px) !important;
+  transform: translate(-50%, 16px) !important;
 }
 
-/* ROZMIAR STRZAŁKI: SOLIDNE 42px x 46px (DOKŁADNIE JAK ZE SCREENSHOTA Z TAŚM) */
+/* ROZMIAR STRZAŁKI: BOLD, 44px x 48px (DOKŁADNIE JAK ZE SCREENSHOTA Z TAŚM) */
 .prescot-scroll-down svg,
 .p-hero-arrow-down svg,
 svg.p-pure-arrow-down {
-  width: 42px !important;
-  height: 46px !important;
+  width: 44px !important;
+  height: 48px !important;
   display: block !important;
-  transition: fill 0.25s ease, transform 0.25s ease !important;
+  transition: fill 0.25s ease, filter 0.25s ease !important;
 }
 
 /* 1. NA CIEMNYCH / CZARNYCH POLACH: CZYSTA LŚNIĄCA BIEL (#ffffff) */
@@ -1559,7 +1560,7 @@ svg.p-pure-arrow-down {
 svg.p-pure-arrow-down {
   fill: #ffffff !important;
   color: #ffffff !important;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 14px rgba(255, 255, 255, 0.45)) !important;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.5)) !important;
 }
 
 /* 2. NA JASNYCH / BIAŁYCH POLACH (OFERTA, PRODUKTY): GRANATOWA FIRMOWA (#19222e) */
@@ -1575,13 +1576,20 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
 
 .prescot-scroll-down:hover svg,
 .p-hero-arrow-down:hover svg {
-  fill: #e14e26 !important;
-  transform: scale(1.15) translateY(4px) !important;
+  fill: #ff5533 !important;
 }
 
-@keyframes pArrowLewitacja {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(12px); }
+/* LEKKO DÓŁ-GÓRA (LEWITACJA 18PX) */
+@keyframes prescotArrowLevitate {
+  0% {
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    transform: translate(-50%, 18px);
+  }
+  100% {
+    transform: translate(-50%, 0px);
+  }
 }
 
 @media (max-width: 767px) {
@@ -1592,8 +1600,13 @@ body:has(.dm-card-slider) .prescot-scroll-down svg {
   .prescot-scroll-down svg,
   .p-hero-arrow-down svg,
   svg.p-pure-arrow-down {
-    width: 32px !important;
-    height: 36px !important;
+    width: 34px !important;
+    height: 38px !important;
+  }
+  @keyframes prescotArrowLevitate {
+    0% { transform: translate(-50%, 0px); }
+    50% { transform: translate(-50%, 12px); }
+    100% { transform: translate(-50%, 0px); }
   }
 }
 

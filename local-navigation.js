@@ -110,11 +110,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
       scrollDownBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const target = document.querySelector("#kreci, #dlaczego-warto, #sprawdz-nasza-oferte, #dystrybucja-marki, #true1, #true2, [id^='card2'], [id^='card-2'], [data-id='3e992196'], .dist-why-section");
-        if (target && window.scrollY < 300) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        
+        // Znajdź idealnie kolejny blok poniżej obecnej pozycji
+        const currentY = window.scrollY || window.pageYOffset;
+        const candidateSelectors = [
+          "#dlaczego-warto", "#zostan-dystrybutorem", "#sprawdz-nasza-oferte", "#sl-prescot", "#sl-klus",
+          "#kreci", "#prawdziwe-mozliwosci",
+          "#true1", "#true2", "#true3", "#true4", "#true5",
+          ".dist-why-section", ".dist-form-section",
+          ".p-full-hero + *", "section:not(:first-child)", "[data-element_type='container']:not(:first-child)"
+        ];
+
+        let nextBlock = null;
+        let minDiff = Infinity;
+
+        for (const sel of candidateSelectors) {
+          const els = document.querySelectorAll(sel);
+          for (const el of els) {
+            const rect = el.getBoundingClientRect();
+            const elTop = rect.top + currentY;
+            const diff = elTop - currentY;
+            if (diff > 60 && diff < minDiff) {
+              minDiff = diff;
+              nextBlock = el;
+            }
+          }
+        }
+
+        if (nextBlock) {
+          nextBlock.scrollIntoView({ behavior: "smooth", block: "start" });
         } else {
-          window.scrollBy({ top: Math.round(window.innerHeight * 0.85), behavior: "smooth" });
+          window.scrollBy({ top: Math.round(window.innerHeight * 0.95), behavior: "smooth" });
         }
       });
     }
