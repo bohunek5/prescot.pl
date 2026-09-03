@@ -257,76 +257,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollDownBtn) {
       const docTotalH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
       const winH = window.innerHeight || 700;
-      const scrollBottom = docTotalH - (currentScrollY + winH);
+      const maxPageScroll = Math.max(1, docTotalH - winH);
+      const pageProgress = currentScrollY / maxPageScroll;
 
-      // 1. Zabezpieczenie: formularz kontaktowy lub sam koniec strony -> ZAWSZE UKRYTE
-      const formEl = document.querySelector("#zostan-dystrybutorem, .dist-form-section, #kontakt-form, .contactForm");
-      let isInsideForm = false;
-      if (formEl) {
-        const fRect = formEl.getBoundingClientRect();
-        if (fRect.top < winH * 0.75 && fRect.bottom > winH * 0.2) {
-          isInsideForm = true;
-        }
-      }
-      const isAtVeryEndOfPage = scrollBottom < 60;
-
-      if (isInsideForm || isAtVeryEndOfPage) {
-        scrollDownBtn.classList.add("psd-hidden");
-        return;
-      }
-
-      // 2. Startowo na Hero: gdy użytkownik jest na samej górze strony -> ZAWSZE WIDOCZNA
-      if (currentScrollY <= 100) {
+      // 1. Startowo na Hero: widoczna w pozycji startowej
+      if (currentScrollY <= 80) {
         scrollDownBtn.classList.remove("psd-hidden");
         updateArrowColor(scrollDownBtn, currentScrollY);
         return;
       }
 
-      // 3. Sprawdzamy w którym dokładnie bloku znajduje się użytkownik:
-      const topSections = getTopLevelSections();
-      const vCenter = winH * 0.5;
-
-      let activeIndex = -1;
-      for (let i = 0; i < topSections.length; i++) {
-        const r = topSections[i].getBoundingClientRect();
-        if (r.top <= vCenter && r.bottom >= vCenter) {
-          activeIndex = i;
-          break;
-        }
-      }
-
-      // Jeśli użytkownik jest poza blokami lub w ostatnim bloku (np. stopka) -> UKRYJ
-      if (activeIndex === -1 || activeIndex === topSections.length - 1) {
-        scrollDownBtn.classList.add("psd-hidden");
-        return;
-      }
-
-      const activeSec = topSections[activeIndex];
-      const aRect = activeSec.getBoundingClientRect();
-      const aHeight = activeSec.offsetHeight;
-
+      // 2. REGUŁA KAROLA - ZASADA 90%:
+      // W przedziale 0% - 89% strony i bloków: STRZAŁKI MA BEZWZGLĘDNIE NIE BYĆ!
+      // Pojawia się DOPIERO OD 90% W GÓRĘ (w tym na dole strony pod "Wyślij zapytanie")!
       let shouldShow = false;
 
-      // Sprawdź czy to pełnoekranowy slajd (100vh jak w Dystrybucji):
-      const isFullScreenSlide = Math.abs(aHeight - winH) < 140 || activeSec.classList.contains("distSlide");
-      if (isFullScreenSlide) {
-        if (Math.abs(aRect.top) <= winH * 0.35) {
-          shouldShow = true;
-        }
+      // Jeśli cały scroll strony osiągnął >= 90% (dół strony, sekcja formularza "Wyślij zapytanie"):
+      if (pageProgress >= 0.88) {
+        shouldShow = true;
       } else {
-        // Dla długich bloków (treść, opisy, maszyny, tabele):
-        // Obliczamy dokładny postęp przewijania TEGO KONKRETNEGO bloku od 0.0 do 1.0:
-        const maxScroll = Math.max(1, aHeight - winH);
-        const currentInSec = -aRect.top;
-        const progress = currentInSec / maxScroll;
+        // Sprawdź postęp w aktualnie widocznym bloku:
+        const topSections = getTopLevelSections();
+        const vCenter = winH * 0.5;
 
-        // REGUŁA KAROLA:
-        // - W środku bloku (0% - 74%): STRZAŁKI MA NIE BYĆ!
-        // - Na ~80% bloku (75% - 100%): STRZAŁKA MA BYĆ!
-        if (progress >= 0.75 && progress <= 1.15) {
-          shouldShow = true;
-        } else {
-          shouldShow = false;
+        let activeIndex = -1;
+        for (let i = 0; i < topSections.length; i++) {
+          const r = topSections[i].getBoundingClientRect();
+          if (r.top <= vCenter && r.bottom >= vCenter) {
+            activeIndex = i;
+            break;
+          }
+        }
+
+        if (activeIndex !== -1) {
+          const activeSec = topSections[activeIndex];
+          const aRect = activeSec.getBoundingClientRect();
+          const aHeight = activeSec.offsetHeight;
+
+          const isFullScreenSlide = Math.abs(aHeight - winH) < 140 || activeSec.classList.contains("distSlide");
+          if (isFullScreenSlide) {
+            if (Math.abs(aRect.top) <= winH * 0.25) {
+              shouldShow = true;
+            }
+          } else {
+            const maxScroll = Math.max(1, aHeight - winH);
+            const currentInSec = -aRect.top;
+            const progress = currentInSec / maxScroll;
+
+            // STRZAŁKA POJAWIA SIĘ DOPIERO NA >= 90% WYSOKOŚCI BLOKU!
+            // 0% - 89% -> 100% UKRYTA!
+            if (progress >= 0.90) {
+              shouldShow = true;
+            }
+          }
         }
       }
 
