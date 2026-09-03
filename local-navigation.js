@@ -316,8 +316,38 @@ document.addEventListener("DOMContentLoaded", () => {
       if (shouldShow) {
         scrollDownBtn.classList.remove("psd-hidden");
         updateArrowColor(scrollDownBtn, currentScrollY);
+
+        // WYJĄTKOWO DLA DYSTRYBUTORA: STRZAŁKA ZAWSZE CZYSTO POD NAPIS / PRZYCISK (BEZ NACHODZENIA)
+        const submitBtn = document.querySelector("#df-submit-btn, .dist-submit-btn");
+        const formSection = document.querySelector("#zostan-dystrybutorem, .dist-form-section");
+
+        let isOverForm = false;
+        if (formSection) {
+          const fsRect = formSection.getBoundingClientRect();
+          if (fsRect.top < winH && fsRect.bottom > 0) {
+            isOverForm = true;
+          }
+        }
+
+        if (isOverForm && submitBtn) {
+          const bRect = submitBtn.getBoundingClientRect();
+          if (bRect.top > 0 && bRect.bottom < winH - 24) {
+            // Precyzyjnie 16px pod dolną krawędzią przycisku
+            scrollDownBtn.style.top = `${Math.round(bRect.bottom + 16)}px`;
+            scrollDownBtn.style.bottom = "auto";
+          } else {
+            scrollDownBtn.style.top = "";
+            scrollDownBtn.style.bottom = "24px";
+          }
+        } else {
+          scrollDownBtn.style.top = "";
+          const hasDock = document.querySelector(".prescot-dock");
+          scrollDownBtn.style.bottom = hasDock ? "90px" : "28px";
+        }
       } else {
         scrollDownBtn.classList.add("psd-hidden");
+        scrollDownBtn.style.top = "";
+        scrollDownBtn.style.bottom = "";
       }
     }
 

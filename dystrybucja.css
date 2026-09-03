@@ -834,3 +834,14 @@
     font-size: 14.5px !important;
   }
 }
+
+
+/* Zwiększony margines pod przyciskiem w formularzu dystrybutora dla strzałki */
+.dist-form-container {
+  padding-bottom: clamp(64px, 8vw, 96px) !important;
+}
+
+.dist-btn-wrap {
+  margin-top: 20px !important;
+  margin-bottom: 24px !important;
+}
