@@ -474,7 +474,7 @@
 }
 
 
-/* --- BRAND SELECTOR GRID IN FORM (ZAMIAST BRZYDKICH PTASZKÓW) --- */
+/* --- BRAND SELECTOR GRID IN FORM (SAME LOGA, PROPORCJONALNIE) --- */
 .dist-label-main {
   display: block;
   font-size: 13.5px;
@@ -507,17 +507,16 @@
 
 .dist-brand-card-inner {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 14px 10px;
+  padding: 16px 14px;
   background: #ffffff;
   border: 2px solid #e2e8f0;
   border-radius: 14px;
   transition: all 0.25s ease;
   position: relative;
-  min-height: 96px;
-  text-align: center;
+  height: 84px;
+  box-sizing: border-box;
 }
 
 .dist-brand-card:hover .dist-brand-card-inner {
@@ -533,34 +532,52 @@
 }
 
 .dist-brand-card-logo-wrap {
-  height: 32px;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
-  width: 100%;
 }
 
 .dist-brand-card-logo {
-  max-height: 28px;
-  max-width: 90%;
+  max-height: 38px;
+  max-width: 86%;
   width: auto;
   object-fit: contain;
 }
 
-.dist-brand-card-name {
-  font-size: 12px;
-  font-weight: 700;
-  color: #19222e;
-  line-height: 1.2;
+/* Optyczne wyrównanie proporcji poszczególnych logotypów */
+.dist-brand-card-logo.logo-prescot {
+  max-height: 28px;
+  max-width: 90%;
+}
+
+.dist-brand-card-logo.logo-klus {
+  max-height: 32px;
+  max-width: 88%;
+}
+
+.dist-brand-card-logo.logo-scharfer {
+  max-height: 44px;
+  max-width: 88%;
+}
+
+.dist-brand-card-logo.logo-elba {
+  max-height: 26px;
+  max-width: 92%;
+}
+
+.dist-brand-card-logo.logo-miboxer {
+  max-height: 32px;
+  max-width: 86%;
 }
 
 .dist-brand-card-check {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 20px;
-  height: 20px;
+  top: 8px;
+  right: 8px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   border: 1.5px solid #cbd5e1;
   background: #ffffff;
@@ -571,8 +588,8 @@
 }
 
 .dist-brand-card-check svg {
-  width: 13px;
-  height: 13px;
+  width: 11px;
+  height: 11px;
 }
 
 .dist-brand-card input:checked + .dist-brand-card-inner .dist-brand-card-check {
