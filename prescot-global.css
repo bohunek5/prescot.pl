@@ -1506,3 +1506,73 @@ a[href="#masthead"],
   visibility: visible !important;
   pointer-events: auto !important;
 }
+/* =========================================================
+   PRESCOT SMART SCROLL-DOWN ARROW (CZYSTO NAD MENU DOCK)
+   ========================================================= */
+.prescot-scroll-down {
+  position: fixed !important;
+  bottom: 96px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 5px !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  opacity: 0.95;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  font-family: var(--prescot-font-body, 'Manrope', sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+}
+
+.prescot-scroll-down.psd-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(12px) !important;
+}
+
+.prescot-scroll-down:hover {
+  opacity: 1 !important;
+  color: #ff7555 !important;
+}
+
+.prescot-scroll-down .psd-label {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.prescot-scroll-down .psd-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(18, 24, 32, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  animation: psdBounce 2.2s infinite ease-in-out;
+}
+
+@keyframes psdBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-7px); }
+  60% { transform: translateY(-3.5px); }
+}
+
+@media (max-width: 767px) {
+  .prescot-scroll-down {
+    bottom: 84px !important;
+    font-size: 10px !important;
+  }
+  .prescot-scroll-down .psd-icon {
+    width: 34px;
+    height: 34px;
+  }
+}
