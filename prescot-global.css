@@ -2114,3 +2114,13 @@ body.has-card-slider #prescotScrollDown {
   margin-top: 20px !important;
   margin-bottom: 24px !important;
 }
+
+
+/* PŁYWAJĄCE OPRAWY ELBA W TLE: DUŻE, WYRAZISTE, CZYSTE */
+.distSlide.is-elba .floatLayer {
+  opacity: 0.68 !important;
+}
+
+.distSlide.is-elba .floatItem {
+  filter: drop-shadow(0 16px 36px rgba(0, 45, 95, 0.18)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08)) !important;
+}

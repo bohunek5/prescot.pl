@@ -1308,7 +1308,7 @@ $(document).ready(function(){
   
 </section>
 
-<section class="distSlide distFloat is-elba" data-bg="#ffffff" data-count="16" data-images='["/wp-content/uploads/2026/elba/elba_uliczna_clean.png","/wp-content/uploads/2026/elba/elba_oprawa_12_clean.png","/wp-content/uploads/2026/elba/elba_8_clean.png","/wp-content/uploads/2026/elba/elba_5_clean.png","/wp-content/uploads/2026/elba/elba_13_clean.png","/wp-content/uploads/2026/elba/elba_15_clean.png"]'>
+<section class="distSlide distFloat is-elba" data-bg="#ffffff" data-count="24" data-images='["/wp-content/uploads/2026/elba/elba_uliczna_clean.png","/wp-content/uploads/2026/elba/elba_oprawa_12_clean.png","/wp-content/uploads/2026/elba/elba_8_clean.png","/wp-content/uploads/2026/elba/elba_5_clean.png","/wp-content/uploads/2026/elba/elba_13_clean.png","/wp-content/uploads/2026/elba/elba_15_clean.png","/wp-content/uploads/2026/elba/elba_parkowa_01.webp","/wp-content/uploads/2026/elba/elba_drogowa_01.webp","/wp-content/uploads/2026/elba/elba_dl_4.png","/wp-content/uploads/2026/elba/elba_dl_5.png","/wp-content/uploads/2026/elba/elba_dl_7.png"]'>
   
   <div class="floatLayer"></div>
   <div class="distGrid">
@@ -1457,6 +1457,7 @@ window.addEventListener("load", () => {
       if (isPrescot) numLanes = 3;
       else if (isKlus) numLanes = 3;
       else if (isScharfer) numLanes = 4;
+      else if (isElba) numLanes = 3;
       else if (isMiboxer) numLanes = 5;
       else numLanes = 8;
     }
@@ -1490,6 +1491,9 @@ window.addEventListener("load", () => {
       } else if (isScharfer) {
         targetMinPx = 200;
         targetMaxPx = 340;
+      } else if (isElba) {
+        targetMinPx = 220;
+        targetMaxPx = 360;
       } else if (isMiboxer) {
         targetMinPx = 140;
         targetMaxPx = 240;
@@ -1507,6 +1511,9 @@ window.addEventListener("load", () => {
       } else if (isScharfer) {
         targetMinPx = 340;
         targetMaxPx = 620;
+      } else if (isElba) {
+        targetMinPx = 400;
+        targetMaxPx = 680;
       } else if (isMiboxer) {
         targetMinPx = 180;
         targetMaxPx = 300;
@@ -1531,7 +1538,7 @@ window.addEventListener("load", () => {
         const laneStart = laneIdx * laneWidth;
 
         xPos = laneStart + rand(-6, 6);
-        duration = isPrescot ? 55 : (isMiboxer ? 35 : 45);
+        duration = isPrescot ? 55 : (isMiboxer ? 35 : (isElba ? 48 : 45));
         delay = - (i / baseCount) * duration;
       } else {
         widthPx = rand(targetMinPx, targetMaxPx);
